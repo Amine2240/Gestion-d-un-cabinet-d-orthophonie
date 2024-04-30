@@ -1,4 +1,5 @@
 package com.example.tp_poo.models;
 
-public class test {
+public class Anamnese {
+
 }
