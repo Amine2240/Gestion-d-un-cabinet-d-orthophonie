@@ -5,6 +5,10 @@ import java.util.Set;
 public abstract class TestQuestionnaire extends Test{
     protected Set<? extends Question> listQuestions; // tout type
 
+    public TestQuestionnaire(String nom, String orthogonisteObservation) {
+        super(nom, orthogonisteObservation);
+    }
+
     public double calculerScoreTotal(){
         int scoretotal = 0;
         for (Question question : listQuestions) {

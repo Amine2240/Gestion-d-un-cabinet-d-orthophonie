@@ -6,7 +6,8 @@ import java.util.Set;
 
 public class TestQcm extends TestQuestionnaire{
    // private Set<QuestionQcm> setQuestionsQcm;
-   public TestQcm(Set<QuestionQcm>  listquestionsqcm){
+   public TestQcm(Set<QuestionQcm>  listquestionsqcm , String nom, String orthogonisteObservation){
+       super(nom , orthogonisteObservation);
          super.listQuestions = new HashSet<QuestionQcm>(listquestionsqcm); // car elle est une interface dans Testquestionnaire
        //super.listQuestions.addAll(listquestionsqcm);
    }

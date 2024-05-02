@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public class TestExerices  extends Test{
     private ArrayList<Exercice> listExercices;
+    public TestExerices(String nom, String orthogonisteObservation , ArrayList<Exercice> listExercices){
+        super(nom , orthogonisteObservation);
+        this.listExercices = listExercices;
+    }
 
 
 

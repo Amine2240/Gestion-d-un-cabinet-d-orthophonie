@@ -9,7 +9,15 @@ public abstract class Patient {
     protected Date dateNaissance;
     protected String lieuNaissance;
     protected String adresse;
-    protected ArrayList<Trouble> troublesPatient;
-    protected String textDemarcheTherapeutique;
-    //protected ArrayList<Bo> listBos;//faire la logique de lanamnese
+    public Patient(String nom, String prenom, Date dateNaissance, String lieuNaissance, String adresse) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaissance = dateNaissance;
+        this.lieuNaissance = lieuNaissance;
+        this.adresse = adresse;
+    }
+    //protected DossierPatient dossierPatient;
+    //protected ArrayList<Trouble> troublesPatient;
+    //protected String textDemarcheTherapeutique;
+    //protected ArrayList<Bo> listBos;
 }
