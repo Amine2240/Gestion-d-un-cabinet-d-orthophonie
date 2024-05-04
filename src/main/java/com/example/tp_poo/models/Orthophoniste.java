@@ -96,6 +96,12 @@ public class Orthophoniste {
   Bo bo1 = new Bo(patient, anamnese1, listEpreuvesCliniques1, diagnostic1, projetTherapeutique1);
  }
 
+// public Question creerQuestion(Question question){
+//  if(question instanceof QuestionQcm){
+//   return
+//  }
+// }
+
  public QuestionQcm creerQuestionQCM(String questionEnonce, int scoreQuestion, List<String> listpropositions, List<String> listReponsesPatient, List<String> listReponsesJustes) {
   return new QuestionQcm(questionEnonce, scoreQuestion, listpropositions, listReponsesPatient, listReponsesJustes);
   // ListQuestionsQcm.add(qcm1);
@@ -113,6 +119,22 @@ public class Orthophoniste {
 
  public Exercice creerExercice(String nomExo, String consigneExo, String nomMaterielExo) {
   return new Exercice(nomExo, consigneExo, nomMaterielExo);
+ };
+
+ public void supprimerQuestionQCM(TestQuestionnaire test , Question question) {
+    test.getListQuestions().remove(question);
+ };
+
+ public void supprimerQuestionQcu(TestQuestionnaire test , Question question) {
+  test.getListQuestions().remove(question);
+ };
+
+ public void supprimerQuestionRpsLibre(TestQuestionnaire test , Question question) {
+  test.getListQuestions().remove(question);
+ };
+
+ public void supprimerExercice(TestExerices test , Exercice exercice) {
+  test.getListExercices().remove(exercice);
  };
 
  public TestQcm creerTestQcm(Set<QuestionQcm> listQuestionsQcm, String nom, String orthogonisteObservation) {
@@ -138,15 +160,94 @@ public class Orthophoniste {
  public Diagnostic creerDiagnostic(ArrayList<Trouble> troubles) {
   return new Diagnostic(troubles);
  };
-
  public ProjetTherapeutique creerProjetTherapeutique(String texte) {
   return new ProjetTherapeutique(texte);
   //
  }
+ public double calculerScoreTestQuestionnaire(TestQuestionnaire test){
+  return test.calculerScoreTotal();
+ }
+
+ public double calculerScoreTestExercices(TestExerices test){
+  return test.calculerScoreTotal();
+ }
+ public void setScoreQuestion(Question question, double score) throws Exception1 {
+  question.setScoreQuestion(score);
+ }
+
  public Anamnese creerAnamneseEnfant(ArrayList<QuestionAnamnese> listQuestions){
   return new AnamneseEnfant(listQuestions);
  }
  public Anamnese creerAnamneseadulte(String histoireMaladie){
   return new AnamneseAdulte(histoireMaladie);
  }
+ public Patient creerPatientEnfant(String nom, String prenom, Date dateNaissance, String lieuNaissance, String adresse, String classeEtude, String numeroMere_Tel, String numeroPere_Tel){
+  return new Enfant(nom, prenom, dateNaissance, lieuNaissance, adresse, classeEtude, numeroMere_Tel, numeroPere_Tel);
+ }
+ public Patient creerPatientAdulte(String nom, String prenom, Date dateNaissance, String lieuNaissance, String adresse,String diplome, String profession,   String numero_Tel){
+    return new Adulte(nom, prenom, dateNaissance, lieuNaissance, adresse,diplome, profession, numero_Tel);
+    }
+
+
+public DossierPatient creerDossierPatient(Patient patient, ArrayList<Bo> listBos, Set<RendezVous> listRdvous, ArrayList<FicheSuivi> listFicheSuivis) {
+ return new DossierPatient(patient, listBos, listRdvous, listFicheSuivis);
+}
+public FicheSuivi creerFicheSuivi( ArrayList<Objectif> Objectifs) {
+ return new FicheSuivi(Objectifs);
+}
+public Objectif creerObjectif(String objectif, CategoriesObjectif categoriesObjectif) {
+ return new Objectif(objectif, categoriesObjectif);
+}
+public void noterObjectifs(FicheSuivi ficheSuivi ,double note) {
+ ficheSuivi.setNoteObjectifs(note);
+}
+public void ajouterObjectif(FicheSuivi ficheSuivi ,Objectif objectif) {
+ ficheSuivi.addObjectif(objectif);
+}
+public void sauvegarderFicheSuivi(FicheSuivi ficheSuivi , ArrayList<Objectif> listObjectifs){
+  if (ficheSuivi.getObjectifsatteints()){
+    // sauvegarder la fiche
+   creerFicheSuivi(listObjectifs); // creer une autre
+  }
+  // serilization
+}
+
+public void consulterlistRendezvousDossierPatient(DossierPatient dossierPatient) {
+ for (RendezVous rendezVous : dossierPatient.getListRdvous()) {
+  System.out.println(rendezVous);
+ }
+}
+
+ public void consulterObservationRendezvousDossierPatient(DossierPatient dossierPatient,RendezVous rdvous) {
+  for (RendezVous rendezVous : dossierPatient.getListRdvous()) {
+   if (rendezVous.equals(rdvous)) {
+    System.out.println(rendezVous.observation);
+   }
+  }
+ }
+
+ public void  consulterCompteRenduTest(Test test){
+  System.out.println(test.orthogonisteObservation);
+ }
+public void consulterBO(Bo bo){
+  System.out.println(bo);
+}
+public void consulterFicheSuivi(FicheSuivi ficheSuivi){
+  System.out.println(ficheSuivi);
+}
+
+public void  listPatientsSouffrantdunTrouble( ArrayList<DossierPatient> listDossierPatients,Trouble trouble){
+    for (DossierPatient dossierPatient : listDossierPatients) {
+     for (Bo bo : dossierPatient.getListBos()) {
+        for (Trouble trouble1 : bo.getDiagnostic().getTroublesPatient()) {
+         if (trouble1.equals(trouble)) {
+            System.out.println(dossierPatient);
+         }
+        }
+     }
+    }
+
+}
+
+
 }

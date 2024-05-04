@@ -9,8 +9,12 @@ public abstract class TestQuestionnaire extends Test{
         super(nom, orthogonisteObservation);
     }
 
+    public Set<? extends Question> getListQuestions() {
+        return listQuestions;
+    }
+
     public double calculerScoreTotal(){
-        int scoretotal = 0;
+        double scoretotal = 0;
         for (Question question : listQuestions) {
             scoretotal = scoretotal + question.scoreQuestion;
         }

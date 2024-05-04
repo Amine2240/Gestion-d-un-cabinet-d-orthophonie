@@ -9,7 +9,9 @@ public class TestExerices  extends Test{
         this.listExercices = listExercices;
     }
 
-
+    public ArrayList<Exercice> getListExercices() {
+        return listExercices;
+    }
 
     public double calculerMoyeneExercice(Exercice exercice){
         double moyeneExercices = 0;

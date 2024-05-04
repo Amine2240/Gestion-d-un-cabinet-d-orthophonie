@@ -7,4 +7,8 @@ public class Diagnostic {
     public Diagnostic(ArrayList<Trouble> troublesPatient){
         this.troublesPatient = troublesPatient;
     }
+
+    public ArrayList<Trouble> getTroublesPatient() {
+        return troublesPatient;
+    }
 }

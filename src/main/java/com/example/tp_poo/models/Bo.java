@@ -24,4 +24,8 @@ public class Bo {
         this.projetTherapeutique = projetTherapeutique;
 
     }
+
+    public Diagnostic getDiagnostic(){
+        return diagnostic;
+    }
 }
