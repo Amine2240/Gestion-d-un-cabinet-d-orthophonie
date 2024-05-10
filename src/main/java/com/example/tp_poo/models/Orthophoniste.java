@@ -1,6 +1,7 @@
 package com.example.tp_poo.models;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.*;
 
 public class Orthophoniste {
@@ -52,7 +53,7 @@ public class Orthophoniste {
 
  public void connaitrePatient() {
   Date dateNaissance1 = new Date();
-  Patient p1 = new Enfant("nom1", "prenom1", dateNaissance1, "lieuNaissance1", "adresse1", "classeEtude1", "numeroMere_Tel2", "numeroMere_Tel2");
+  //Patient p1 = new Enfant("nom1", "prenom1", dateNaissance1, "lieuNaissance1", "adresse1", "classeEtude1", "numeroMere_Tel2", "numeroMere_Tel2");
  }
 
  public void faireBO(Patient patient) {//collecter les informations sur le patient ( on est dans le premier Bo)
@@ -181,10 +182,10 @@ public class Orthophoniste {
  public Anamnese creerAnamneseadulte(String histoireMaladie){
   return new AnamneseAdulte(histoireMaladie);
  }
- public Patient creerPatientEnfant(String nom, String prenom, Date dateNaissance, String lieuNaissance, String adresse, String classeEtude, String numeroMere_Tel, String numeroPere_Tel){
+ public Patient creerPatientEnfant(String nom, String prenom, LocalDate dateNaissance, String lieuNaissance, String adresse, String classeEtude, String numeroMere_Tel, String numeroPere_Tel){
   return new Enfant(nom, prenom, dateNaissance, lieuNaissance, adresse, classeEtude, numeroMere_Tel, numeroPere_Tel);
  }
- public Patient creerPatientAdulte(String nom, String prenom, Date dateNaissance, String lieuNaissance, String adresse,String diplome, String profession,   String numero_Tel){
+ public Patient creerPatientAdulte(String nom, String prenom, LocalDate dateNaissance, String lieuNaissance, String adresse,String diplome, String profession,   String numero_Tel){
     return new Adulte(nom, prenom, dateNaissance, lieuNaissance, adresse,diplome, profession, numero_Tel);
     }
 

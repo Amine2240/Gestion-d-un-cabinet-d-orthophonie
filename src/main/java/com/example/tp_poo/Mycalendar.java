@@ -32,13 +32,14 @@ public class Mycalendar extends CalendarView {// ou bien lextrendre de CalendarV
         root = new BorderPane();
 
         // Initialize the logout button
-        mybutton = new Button("Log out");
-        mybutton.setStyle("-fx-background-color: #ff0000");
+        mybutton = new Button("Patients");
+        mybutton.setStyle("-fx-background-color: green");
 
         // Set action for the logout button
         mybutton.setOnAction(e -> {
             try {
-                switchToSignupScene(e);
+               // switchToSignupScene(e);
+                switchToPatientScene(e);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
@@ -53,6 +54,13 @@ public class Mycalendar extends CalendarView {// ou bien lextrendre de CalendarV
 
     private void switchToSignupScene(ActionEvent event) throws IOException {
         // Implement your logic to switch to the signup scene here
+    }
+    public void switchToPatientScene(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PatientsScene.fxml")));
+        Stage stage =(Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public Parent getRoot() {
