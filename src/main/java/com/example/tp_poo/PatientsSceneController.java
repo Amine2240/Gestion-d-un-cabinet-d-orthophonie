@@ -245,7 +245,6 @@ private TextField searchField;
 
         adultesTable.getColumns().addAll(nomColumn, prenomColumn , dateNaissanceColumn, lieuNaissanceColumn, adresseColumn, professionColumn , diplomeColumn, numeroTelColumn);
     }
-
     public void choixPatientsAction(ActionEvent event){
 
         String choix = choixPatients.getValue();
@@ -262,7 +261,6 @@ private TextField searchField;
             searchField.setPromptText("Search enfants by name or prenom");
         }
     }
-
     public void switchToLoginScene(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("LoginScene.fxml")));
         Stage stage =(Stage)((Node)event.getSource()).getScene().getWindow();

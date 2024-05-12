@@ -35,19 +35,35 @@ public class LoginController {
 
     }
 
-    public void showCalendarScene(ActionEvent event) throws IOException {
-        // Create and show the calendar scene
-        if (username.getText().equals("admin") && password.getText().equals("admin")) {
-            Mycalendar calendarView = new Mycalendar();
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene calendarScene = new Scene(calendarView.getRoot(), 1300, 1000);
+//    public void showCalendarScene(ActionEvent event) throws IOException {
+//        // Create and show the calendar scene
+//        if (username.getText().equals("admin") && password.getText().equals("admin")) {
+//            Mycalendar calendarView = new Mycalendar();
+//            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//            Scene calendarScene = new Scene(calendarView.getRoot(), 1300, 1000);
+//
+//            stage.setScene(calendarScene);
+//            stage.show();
+//        }
+//        else {
+//            errorLabel.setText("Invalid username or password");
+//
+//        }
+//    }
+public void allerVersHome(ActionEvent event) throws IOException {
+    if (username.getText().equals("admin") && password.getText().equals("admin")) {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HomeScene.fxml")));
+        stage =(Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
-            stage.setScene(calendarScene);
-            stage.show();
-        }
-        else {
-            errorLabel.setText("Invalid username or password");
-
-        }
     }
+    else {
+        errorLabel.setText("Invalid username or password");
+
+    }
+
+
+}
 }
