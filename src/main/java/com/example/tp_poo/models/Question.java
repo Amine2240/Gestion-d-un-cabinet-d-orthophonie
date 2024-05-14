@@ -4,9 +4,9 @@ public abstract class Question {
     protected String questionEnonce;
     protected double scoreQuestion; // il sera modifie par lorthogoniste (avec exception)
 
-    public Question(String questionEnonce, int scoreQuestion) {
+    public Question(String questionEnonce) {
         this.questionEnonce = questionEnonce;
-        this.scoreQuestion = scoreQuestion;
+       // this.scoreQuestion = scoreQuestion;
     }
 
     public void setScoreQuestion(double scoreQuestion) throws Exception1 {
@@ -20,4 +20,8 @@ public abstract class Question {
         }
 
     }
+    public String getQuestionEnonce() {
+        return questionEnonce;
+    }
+
 }

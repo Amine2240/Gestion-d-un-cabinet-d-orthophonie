@@ -12,7 +12,9 @@ module com.example.tp_poo {
     requires com.almasb.fxgl.all;
     requires java.sql;
     requires com.calendarfx.view;
-   // requires de.jensd.fx.fontawesomefx.fontawesome;
+    requires java.desktop;
+    requires javafx.swing;
+    // requires de.jensd.fx.fontawesomefx.fontawesome;
 
     opens com.example.tp_poo to javafx.fxml;
     exports com.example.tp_poo;

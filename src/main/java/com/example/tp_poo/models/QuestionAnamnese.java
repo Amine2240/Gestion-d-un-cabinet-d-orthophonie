@@ -4,8 +4,8 @@ public class QuestionAnamnese extends QuestionRpsLibres {
     // elle concerne lanamnese
     private Categories questionCategorie;
 
-    public QuestionAnamnese(String questionEnonce, int scoreQuestion, String reponsePatientLibre , Categories questionCategorie) {
-        super(questionEnonce, scoreQuestion, reponsePatientLibre);
+    public QuestionAnamnese(String questionEnonce , Categories questionCategorie) {
+        super(questionEnonce);
         this.questionCategorie = questionCategorie;
     }
 }

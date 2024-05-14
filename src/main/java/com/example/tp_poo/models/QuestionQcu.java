@@ -7,10 +7,13 @@ public class QuestionQcu extends Question {
     private String reponsePatient;
     private String reponseJuste;
 
-    public QuestionQcu(String questionEnonce, int scoreQuestion , List<String> listpropositions , String ReponsePatient  , String ReponseJuste) {
-        super(questionEnonce, scoreQuestion);
+    public QuestionQcu(String questionEnonce, List<String> listpropositions   , String ReponseJuste) {
+        super(questionEnonce);
         this.listpropositions = listpropositions;
-        this.reponsePatient = ReponsePatient;
+        //this.reponsePatient = ReponsePatient;
         this.reponseJuste = ReponseJuste;
+    }
+    public List<String> getListpropositions() {
+        return listpropositions;
     }
 }

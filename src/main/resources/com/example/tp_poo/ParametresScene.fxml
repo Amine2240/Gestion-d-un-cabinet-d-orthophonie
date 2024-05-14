@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
@@ -17,8 +18,17 @@
          <children>
             <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Circle fx:id="mycircle" fill="DODGERBLUE" radius="28.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Button mnemonicParsing="false" onAction="#choisirImage" prefHeight="26.0" prefWidth="74.0" text="upload image">
+                  <StackPane prefHeight="56.0" prefWidth="59.0">
+                     <children>
+                        <Circle fx:id="mycircle" fill="#3200b1" radius="28.0" stroke="#3200b1" strokeType="INSIDE" />
+                        <Label fx:id="A" text="A" textFill="WHITE">
+                           <font>
+                              <Font size="37.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </StackPane>
+                  <Button mnemonicParsing="false" onAction="#choisirImage" prefHeight="20.0" prefWidth="18.0" text="upload image">
                      <font>
                         <Font size="9.0" />
                      </font>
@@ -103,5 +113,6 @@
             </Button>
          </children>
       </VBox>
+      <Button layoutX="467.0" layoutY="602.0" mnemonicParsing="false" onAction="#allerVersDocumentation" text="Documentation" />
    </children>
 </AnchorPane>

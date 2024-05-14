@@ -104,17 +104,17 @@ public class Orthophoniste {
 // }
 
  public QuestionQcm creerQuestionQCM(String questionEnonce, int scoreQuestion, List<String> listpropositions, List<String> listReponsesPatient, List<String> listReponsesJustes) {
-  return new QuestionQcm(questionEnonce, scoreQuestion, listpropositions, listReponsesPatient, listReponsesJustes);
+  return new QuestionQcm(questionEnonce, listpropositions,  listReponsesJustes);
   // ListQuestionsQcm.add(qcm1);
  };
 
  public QuestionQcu creerQuestionQcu(String questionEnonce, int scoreQuestion, List<String> listpropositions, String ReponsesPatient, String ReponseJuste) {
-  return new QuestionQcu(questionEnonce, scoreQuestion, listpropositions, ReponsesPatient, ReponseJuste);
+  return new QuestionQcu(questionEnonce,  listpropositions, ReponseJuste);
   // ListQuestionsQcu.add(qcu1);
  };
 
  public QuestionRpsLibres creerQuestionRpsLibre(String questionEnonce, int scoreQuestion, String reponsePatientLibre) {
-  return new QuestionRpsLibres(questionEnonce, scoreQuestion, reponsePatientLibre);
+  return new QuestionRpsLibres(questionEnonce);
   // ListQuestionsRpsLibre.add(qRpsLibre);
  };
 
