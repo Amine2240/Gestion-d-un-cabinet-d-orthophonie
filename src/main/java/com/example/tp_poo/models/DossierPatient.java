@@ -26,6 +26,9 @@ public class DossierPatient {
         numeroDossierIncrement = numeroDossierIncrement + 1 ;
         this.numeroDossier = numeroDossierIncrement;
     }
+    public Patient getPatient() {
+        return patient;
+    }
 
     public Set<RendezVous> getListRdvous() {
         return listRdvous;

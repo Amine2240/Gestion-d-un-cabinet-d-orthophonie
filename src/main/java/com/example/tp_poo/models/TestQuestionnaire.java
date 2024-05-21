@@ -9,9 +9,9 @@ public abstract class TestQuestionnaire extends Test{
         super(nom, orthogonisteObservation);
     }
 
-    public Set<? extends Question> getListQuestions() {
-        return listQuestions;
-    }
+//    public Set<? extends Question> getListQuestions() {
+//        return listQuestions;
+//    }
 
     public double calculerScoreTotal(){
         double scoretotal = 0;

@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="834.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp_poo.PatientsSceneController">
+<AnchorPane prefHeight="410.0" prefWidth="809.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp_poo.RendezVousController">
    <children>
-      <AnchorPane layoutX="211.0" prefHeight="400.0" prefWidth="624.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="211.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="221.0" prefHeight="410.0" prefWidth="624.0" AnchorPane.leftAnchor="221.0" AnchorPane.rightAnchor="0.0">
          <children>
             <AnchorPane prefHeight="47.0" prefWidth="834.0" style="-fx-background-color: green;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <TextField fx:id="searchField" layoutX="364.0" layoutY="10.0" prefHeight="26.0" prefWidth="245.0" promptText="Search patient..." style="-fx-background-color: white;" AnchorPane.rightAnchor="14.399999999999977" />
-                  <Label style="-fx-text-fill: white;" text="Liste des patients" textFill="#0bf42e">
+                  <TextField fx:id="searchField" layoutX="364.0" layoutY="10.0" prefHeight="26.0" prefWidth="245.0" promptText="Search RendezVous..." style="-fx-background-color: white;" AnchorPane.rightAnchor="14.399999999999977" />
+                  <Label style="-fx-text-fill: white;" text="Liste des Rendez-Vous" textFill="#0bf42e">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -27,17 +27,18 @@
                   </Label>
                </children>
             </AnchorPane>
-            <ChoiceBox fx:id="choixPatients" layoutX="6.0" layoutY="112.0" prefWidth="150.0" />
-            <Button fx:id="ajouterPatientButton" layoutX="506.0" layoutY="111.0" mnemonicParsing="false" onAction="#showDialog" style="-fx-background-color: green;" text="Ajouter Patient" AnchorPane.rightAnchor="14.399999999999949">
+            <ChoiceBox fx:id="choixRendezVous" layoutX="6.0" layoutY="112.0" prefWidth="150.0" />
+            <Button fx:id="ajouterRendezVousButton" layoutX="506.0" layoutY="111.0" mnemonicParsing="false" onAction="#showDialog" style="-fx-background-color: green;" text="ajouter RendezVous" textFill="WHITE" AnchorPane.rightAnchor="14.399999999999949">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TableView fx:id="adultesTable" prefHeight="260.0" prefWidth="834.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0" />
-            <TableView fx:id="enfantsTable" prefHeight="260.0" prefWidth="834.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0" />
+            <TableView fx:id="seanceSuiviTable" prefHeight="260.0" prefWidth="834.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0" />
+            <TableView fx:id="consulationsTable" prefHeight="260.0" prefWidth="834.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0" />
+            <TableView fx:id="atelierTable" layoutX="-1.0" layoutY="140.0" prefHeight="270.0" prefWidth="625.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0" />
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="400.0" prefWidth="210.0" style="-fx-background-color: green;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="-2.0" prefHeight="410.0" prefWidth="222.0" style="-fx-background-color: green;">
          <children>
             <Label layoutX="11.0" layoutY="96.0" style="-fx-text-fill: white;" text="Welcome Amine!" textFill="WHITE">
                <font>

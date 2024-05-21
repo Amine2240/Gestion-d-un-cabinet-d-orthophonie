@@ -43,7 +43,7 @@ public class Orthophoniste {
 
 
 // verifier lheure et la date avant de  creer un rendez vous
-  RendezVous rendezVous1 = new Consultation(TypePatient.ENFANT, date1, heure1);
+  //RendezVous rendezVous1 = new Consultation(TypePatient.ENFANT, date1, heure1);
 
  }
 
@@ -123,15 +123,15 @@ public class Orthophoniste {
  };
 
  public void supprimerQuestionQCM(TestQuestionnaire test , Question question) {
-    test.getListQuestions().remove(question);
+    //test.getListQuestions().remove(question);
  };
 
  public void supprimerQuestionQcu(TestQuestionnaire test , Question question) {
-  test.getListQuestions().remove(question);
+ // test.getListQuestions().remove(question);
  };
 
  public void supprimerQuestionRpsLibre(TestQuestionnaire test , Question question) {
-  test.getListQuestions().remove(question);
+ // test.getListQuestions().remove(question);
  };
 
  public void supprimerExercice(TestExerices test , Exercice exercice) {

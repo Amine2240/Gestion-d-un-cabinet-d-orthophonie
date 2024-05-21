@@ -11,4 +11,9 @@ public class TestQcu extends TestQuestionnaire{
        super.listQuestions = new HashSet<QuestionQcu>(listquestionsqcu);
       // super.listQuestions.addAll(listquestionsqcu);
    }
+
+    public Set<QuestionQcu> getListQuestionsQcu(){
+         return (Set<QuestionQcu>) super.listQuestions;
+    }
+
 }

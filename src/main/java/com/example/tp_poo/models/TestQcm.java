@@ -11,4 +11,7 @@ public class TestQcm extends TestQuestionnaire{
          super.listQuestions = new HashSet<QuestionQcm>(listquestionsqcm); // car elle est une interface dans Testquestionnaire
        //super.listQuestions.addAll(listquestionsqcm);
    }
+    public Set<QuestionQcm> getListQuestionsQcm(){
+        return (Set<QuestionQcm>) super.listQuestions;
+    }
 }

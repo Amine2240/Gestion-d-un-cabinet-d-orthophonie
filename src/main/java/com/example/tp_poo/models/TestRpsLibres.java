@@ -10,6 +10,9 @@ public class TestRpsLibres extends TestQuestionnaire {
         super.listQuestions = new HashSet<>(listquestionRpsLibres);
         //super.listQuestions.addAll(listquestionRpsLibres);
     }
+    public Set<QuestionRpsLibres> getListQuestionsRpsLibres(){
+        return (Set<QuestionRpsLibres>) super.listQuestions;
+    }
 
 
 }

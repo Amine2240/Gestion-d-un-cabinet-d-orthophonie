@@ -11,7 +11,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="381.0" layoutY="65.0" mnemonicParsing="false" onAction="#allerVersAgenda" prefHeight="129.0" prefWidth="137.0" style="-fx-background-color: green; -fx-text-fill: white;" text="Agenda" textAlignment="CENTER" wrapText="true">
+      <Button layoutX="381.0" layoutY="65.0" mnemonicParsing="false" onAction="#allerVersRendezVous" prefHeight="129.0" prefWidth="137.0" style="-fx-background-color: green; -fx-text-fill: white;" text="Rendez Vous" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="20.0" />
          </font>

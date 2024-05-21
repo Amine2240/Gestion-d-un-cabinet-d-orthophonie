@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp_poo.TestsEtAnamnesesController">
    <children>
       <Label layoutX="48.0" layoutY="14.0" text="Tests">
@@ -16,10 +15,11 @@
          </font>
       </Label>
       <ListView fx:id="listView" layoutX="-1.0" layoutY="68.0" orientation="HORIZONTAL" prefHeight="46.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" />
-      <VBox fx:id="questionsVBox" layoutX="14.4" layoutY="123.0" prefHeight="260.0" prefWidth="564.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="123.19999999999999">
+      <HBox fx:id="containerHbox" layoutX="19.0" layoutY="122.0" prefHeight="266.0" prefWidth="558.0">
          <children>
-            <HBox fx:id="propositionsHBox" prefHeight="100.0" prefWidth="200.0" />
+            <VBox fx:id="selectedTestVBox" prefHeight="266.0" prefWidth="321.0" style="-fx-background-color: green;" />
+            <VBox fx:id="listTestsVBox" layoutX="10.0" layoutY="10.0" prefHeight="266.0" prefWidth="237.0" style="-fx-background-color: #00ef4c;" />
          </children>
-      </VBox>
+      </HBox>
    </children>
 </AnchorPane>

@@ -18,5 +18,9 @@ public abstract class Test {
         this.orthogonisteObservation = observation;
     }
 
+    public String getNom(){
+        return nom;
+    }
+
     public  abstract double calculerScoreTotal(); // entre 1 et 10
 }

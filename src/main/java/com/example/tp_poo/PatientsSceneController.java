@@ -10,23 +10,23 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
 
 //import javax.security.auth.callback.Callback;
+import javax.swing.text.html.ImageView;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
 
 public class PatientsSceneController implements Initializable {
@@ -67,6 +67,15 @@ public class PatientsSceneController implements Initializable {
 
 @FXML
 private TextField searchField;
+@FXML
+ImageView supprimerButtonview;
+//Image image = new Image(getClass().getResourceAsStream("icons8-supprimer-30.png"));
+
+    @FXML
+    private Button ajouterPatientButton;
+
+    Patient addedPatient = null;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         choixPatients.getItems().addAll(choix);
@@ -178,9 +187,46 @@ private TextField searchField;
         numeroPereColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNumeroPere()));
         numeroPereColumn.setCellFactory(cellFactory);
 
+        TableColumn<Enfant, String> supprimerButtonColumn = new TableColumn<>("");
+        // supprimerButtonColumn.setCellValueFactory(data -> supprimerButton);
+        supprimerButtonColumn.setCellFactory(new Callback<TableColumn<Enfant, String>, TableCell<Enfant, String>>() {
+            @Override
+            public TableCell<Enfant, String> call(TableColumn<Enfant, String> param) {
+                return new TableCell<>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            HBox hbox = new HBox();
+                            Button button = new Button("Supprimer");
+                            button.setCursor(javafx.scene.Cursor.HAND);
+                            button.setOnAction(e -> {
+                                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                alert.setTitle("Confirmation de suppression");
+                                alert.setHeaderText("Confirmer la suppression");
+                                alert.setContentText("Voulez-vous vraiment supprimer ce patient?");
+                                Optional<ButtonType> result = alert.showAndWait();
+                                if (result.isPresent() && result.get() == ButtonType.OK) {
+                                    Enfant patient = getTableView().getItems().get(getIndex());
+                                    getTableView().getItems().remove(patient);
+                                    // Optionally, add code to remove patient from the database or other data structures
+                                }
 
 
-        enfantsTable.getColumns().addAll(nomColumn, prenomColumn , dateNaissanceColumn, lieuNaissanceColumn, adresseColumn, classEtudesColumn, numeroMereColumn, numeroPereColumn);
+                            });
+                            hbox.getChildren().add(button);
+                            setGraphic(hbox);
+                        }
+                    }
+                };
+            }
+        });
+
+
+
+        enfantsTable.getColumns().addAll(nomColumn, prenomColumn , dateNaissanceColumn, lieuNaissanceColumn, adresseColumn, classEtudesColumn, numeroMereColumn, numeroPereColumn , supprimerButtonColumn);
 
 
     }
@@ -243,8 +289,54 @@ private TextField searchField;
         numeroTelColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNumeroTel()));
         numeroTelColumn.setCellFactory(cellFactory);
 
-        adultesTable.getColumns().addAll(nomColumn, prenomColumn , dateNaissanceColumn, lieuNaissanceColumn, adresseColumn, professionColumn , diplomeColumn, numeroTelColumn);
+        TableColumn<Adulte, String> supprimerButtonColumn = new TableColumn<>("");
+       // supprimerButtonColumn.setCellValueFactory(data -> supprimerButton);
+        supprimerButtonColumn.setCellFactory(new Callback<TableColumn<Adulte, String>, TableCell<Adulte, String>>() {
+            @Override
+            public TableCell<Adulte, String> call(TableColumn<Adulte, String> param) {
+                return new TableCell<>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            HBox hbox = new HBox();
+                            Button button = new Button("Supprimer");
+                            button.setCursor(javafx.scene.Cursor.HAND);
+                            button.setOnAction(e -> {
+                                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                alert.setTitle("Confirmation de suppression");
+                                alert.setHeaderText("Confirmer la suppression");
+                                alert.setContentText("Voulez-vous vraiment supprimer ce patient?");
+                                Optional<ButtonType> result = alert.showAndWait();
+                                if (result.isPresent() && result.get() == ButtonType.OK) {
+                                    Adulte patient = getTableView().getItems().get(getIndex());
+                                    getTableView().getItems().remove(patient);
+                                    // Optionally, add code to remove patient from the database or other data structures
+                                }
+
+
+                            });
+                            hbox.getChildren().add(button);
+                            setGraphic(hbox);
+                        }
+                    }
+                };
+            }
+        });
+
+        adultesTable.getColumns().addAll(nomColumn, prenomColumn , dateNaissanceColumn, lieuNaissanceColumn, adresseColumn, professionColumn , diplomeColumn, numeroTelColumn , supprimerButtonColumn);
     }
+//    public void supprimerButtonAction(Patient patient){
+//        //supprimerButton.setOnAction(this::supprimerButtonAction);
+//        //enfantsTable.getItems().remove(patient);
+//        if (patient instanceof Enfant)
+//            enfantsTable.getItems().remove(patient);
+//        else if (patient instanceof Adulte)
+//            adultesTable.getItems().remove(patient); // or based on checkbox value
+//
+//    }
     public void choixPatientsAction(ActionEvent event){
 
         String choix = choixPatients.getValue();
@@ -276,5 +368,63 @@ private TextField searchField;
 
         stage.setScene(calendarScene);
         stage.show();
+    }
+
+    public void showDialog(ActionEvent event){
+
+        Dialog dialog = new Dialog();
+        dialog.setTitle("Ajouter Patient");
+        dialog.setHeaderText("Ajouter un nouveau patient");
+        dialog.setResizable(true);
+        dialog.getDialogPane().setPrefSize(480, 320);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        dialog.getDialogPane().setContent(createContent());
+        Optional result = dialog.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            adultesTable.getItems().add((Adulte) addedPatient);
+
+        }
+
+    }
+    private Node createContent() {
+        // Create a VBox to hold the form elements
+        VBox vbox = new VBox();
+        vbox.setSpacing(10);
+        vbox.setPadding(new Insets(10, 10, 10, 10));
+
+        // Create the form elements
+        TextField nomField = new TextField();
+        nomField.setPromptText("Nom");
+        TextField prenomField = new TextField();
+        prenomField.setPromptText("Prenom");
+        DatePicker dateNaissancePicker = new DatePicker();
+        dateNaissancePicker.setPromptText("Date Naissance");
+        TextField lieuNaissanceField = new TextField();
+        lieuNaissanceField.setPromptText("Lieu Naissance");
+        TextField adresseField = new TextField();
+        adresseField.setPromptText("Adresse");
+        if (choixPatients.getValue().equals("Adulte")){
+TextField professionField = new TextField();
+            professionField.setPromptText("Profession");
+            TextField diplomeField = new TextField();
+            diplomeField.setPromptText("Diplome");
+            TextField numeroTelField = new TextField();
+            numeroTelField.setPromptText("Numero Tel");
+            vbox.getChildren().addAll(nomField, prenomField, dateNaissancePicker, lieuNaissanceField, adresseField, professionField, diplomeField, numeroTelField);
+            addedPatient =  new Adulte(nomField.getText(), prenomField.getText(), dateNaissancePicker.getValue(), lieuNaissanceField.getText(), adresseField.getText(), diplomeField.getText(), professionField.getText(), numeroTelField.getText()) ;
+        }
+        else if (choixPatients.getValue().equals("Enfant")){
+            TextField classEtudesField = new TextField();
+            classEtudesField.setPromptText("Classe Etudes");
+            TextField numeroMereField = new TextField();
+            numeroMereField.setPromptText("Numero Mere");
+            TextField numeroPereField = new TextField();
+            numeroPereField.setPromptText("Numero Pere");
+            vbox.getChildren().addAll(nomField, prenomField, dateNaissancePicker, lieuNaissanceField, adresseField, classEtudesField, numeroMereField, numeroPereField);
+            addedPatient =  new Enfant(nomField.getText(), prenomField.getText(), dateNaissancePicker.getValue(), lieuNaissanceField.getText(), adresseField.getText(), classEtudesField.getText(), numeroMereField.getText(), numeroPereField.getText()) ;
+
+        }
+
+        return vbox;
     }
 }

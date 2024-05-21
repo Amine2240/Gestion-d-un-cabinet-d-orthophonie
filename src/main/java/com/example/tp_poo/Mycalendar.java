@@ -2,15 +2,11 @@ package com.example.tp_poo;
 
 import com.calendarfx.view.CalendarView;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -50,6 +46,7 @@ public class Mycalendar extends CalendarView {// ou bien lextrendre de CalendarV
 
         // Set the calendar view at the center of the BorderPane
         root.setCenter(this);
+       // this.setEntryDetailsPopOverContentCallback(entry ->new MyentryView(entry.getEntry()));
     }
 
     private void switchToSignupScene(ActionEvent event) throws IOException {
