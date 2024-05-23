@@ -59,7 +59,7 @@ public class Orthophoniste {
  public void faireBO(Patient patient) {//collecter les informations sur le patient ( on est dans le premier Bo)
 
   ArrayList<QuestionAnamnese> listQuestionsAnamnese1 = new ArrayList<QuestionAnamnese>();
-  Anamnese anamnese1 = new AnamneseEnfant(listQuestionsAnamnese1); // si cetait un adulte on passe son histoire de maladie en parametre
+  Anamnese anamnese1 = new AnamneseEnfant("nom",listQuestionsAnamnese1); // si cetait un adulte on passe son histoire de maladie en parametre
 
 
   Set<QuestionQcm> listQuestionsQcm = new HashSet<QuestionQcm>();
@@ -177,10 +177,10 @@ public class Orthophoniste {
  }
 
  public Anamnese creerAnamneseEnfant(ArrayList<QuestionAnamnese> listQuestions){
-  return new AnamneseEnfant(listQuestions);
+  return new AnamneseEnfant("nom",listQuestions);
  }
  public Anamnese creerAnamneseadulte(String histoireMaladie){
-  return new AnamneseAdulte(histoireMaladie);
+  return new AnamneseAdulte("nom ",histoireMaladie);
  }
  public Patient creerPatientEnfant(String nom, String prenom, LocalDate dateNaissance, String lieuNaissance, String adresse, String classeEtude, String numeroMere_Tel, String numeroPere_Tel){
   return new Enfant(nom, prenom, dateNaissance, lieuNaissance, adresse, classeEtude, numeroMere_Tel, numeroPere_Tel);

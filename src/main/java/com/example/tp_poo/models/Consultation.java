@@ -15,19 +15,19 @@ public Consultation(TypePatient typePatient , LocalDate date , LocalTime heureDe
     }
 
 }
-@Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        Consultation consultation = (Consultation) obj;
-        return this.date.equals(consultation.date) && this.heureDebut.equals(consultation.heureDebut) && this.patient.equals(consultation.patient);
-    }
-    @Override
-public int hashCode() {
-        return date.hashCode() + heureDebut.hashCode() + patient.hashCode();
-    }
+//@Override
+//    public boolean equals(Object obj) {
+//        if (this == obj) {
+//            return true;
+//        }
+//        if (obj == null || getClass() != obj.getClass()) {
+//            return false;
+//        }
+//        Consultation consultation = (Consultation) obj;
+//        return this.date.equals(consultation.date) && this.heureDebut.equals(consultation.heureDebut) && this.patient.equals(consultation.patient);
+//    }
+//    @Override
+//public int hashCode() {
+//        return date.hashCode() + heureDebut.hashCode() + patient.hashCode();
+//    }
 }

@@ -8,4 +8,7 @@ public class QuestionAnamnese extends QuestionRpsLibres {
         super(questionEnonce);
         this.questionCategorie = questionCategorie;
     }
+    public Categories getQuestionCategorie() {
+        return questionCategorie;
+    }
 }

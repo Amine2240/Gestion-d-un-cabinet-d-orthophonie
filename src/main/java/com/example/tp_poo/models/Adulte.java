@@ -15,6 +15,12 @@ public class Adulte extends Patient{
         this.numeroTel = numeroTel;
 
     }
+    public Adulte(String nom, String prenom, int age) {
+        super(nom, prenom, age);
+//        this.diplome = diplome;
+//        this.profession = profession;
+//        this.numeroTel = numeroTel;
+    }
 
     public String getDiplome() {
         return diplome;

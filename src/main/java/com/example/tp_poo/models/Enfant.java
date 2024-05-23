@@ -14,6 +14,13 @@ public class Enfant extends Patient{
         this.numeroPere = numeroPere;
     }
 
+    public Enfant(String nom, String prenom, int age ) {
+        super(nom, prenom, age);
+//        this.diplome = diplome;
+//        this.profession = profession;
+//        this.numeroTel = numeroTel;
+    }
+
     public String getNumeroMere() {
         return numeroMere;
     }

@@ -36,6 +36,9 @@ public class DossierPatient {
     public ArrayList<Bo> getListBos() {
         return listBos;
     }
+    public ArrayList<FicheSuivi> getListFicheSuivis() {
+        return listFicheSuivis;
+    }
     //    public void incrementNumeroDossier() {
 //
 //    }

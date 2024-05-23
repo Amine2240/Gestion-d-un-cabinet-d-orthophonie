@@ -28,4 +28,16 @@ public class Bo {
     public Diagnostic getDiagnostic(){
         return diagnostic;
     }
+    public ProjetTherapeutique getProjetTherapeutique(){
+        return projetTherapeutique;
+    }
+    public Patient getPatient(){
+        return patient;
+    }
+    public Anamnese getAnamnese(){
+        return anamnese;
+    }
+    public ArrayList<EpreuveClinique> getListEpreuvesCliniques(){
+        return listEpreuvesCliniques;
+    }
 }

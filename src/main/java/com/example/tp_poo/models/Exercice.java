@@ -16,4 +16,10 @@ public class Exercice {
     public String getNomExo() {
         return nomExo;
     }
+    public String getConsigneExo() {
+        return consigneExo;
+    }
+    public String getNomMaterielExo() {
+        return nomMaterielExo;
+    }
 }

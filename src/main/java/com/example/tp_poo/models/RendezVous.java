@@ -28,8 +28,11 @@ public abstract class RendezVous {
     public LocalTime getHeureDebut(){
         return heureDebut;
     }
+    public void setHeureDebut(LocalTime heureDebut){
+        this.heureDebut = heureDebut;
+    }
     public LocalTime getHeureFin(){
-        return heureDebut;
+        return heureFin;
     }
     public LocalDate getDate(){
         return date;
