@@ -23,6 +23,9 @@ public class FicheSuivi {
 
        // this.noteObjectifs = noteObjectifs;
     }
+    public double getNoteObjectifs() {
+        return noteObjectifs;
+    }
     public void addObjectif( Objectif objectif){
         listObjectifs.add(objectif);
     }
@@ -31,5 +34,8 @@ public class FicheSuivi {
     }
     public void setObjectifsatteints(boolean objectifsatteints) {
         this.objectifsatteints = objectifsatteints;
+    }
+    public ArrayList<Objectif> getListObjectifs() {
+        return listObjectifs;
     }
 }

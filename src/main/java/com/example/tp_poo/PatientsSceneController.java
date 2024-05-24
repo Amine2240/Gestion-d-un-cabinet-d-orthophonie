@@ -1,6 +1,7 @@
 package com.example.tp_poo;
 
 import com.example.tp_poo.models.Adulte;
+import com.example.tp_poo.models.DossierPatient;
 import com.example.tp_poo.models.Enfant;
 import com.example.tp_poo.models.Patient;
 import javafx.beans.property.SimpleStringProperty;
@@ -27,6 +28,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class PatientsSceneController implements Initializable {
@@ -38,11 +40,11 @@ public class PatientsSceneController implements Initializable {
     LocalDate date4 = LocalDate.of(2003, 4, 4);
 
     // Create Enfant objects with real data
-    Enfant p1 = new Enfant("John", "Doe", date1, "Paris", "123 Main St", "Primary", "0552484650", "0541177916");
-    Enfant p2 = new Enfant("Jane", "Smith", date2, "London", "456 Elm St", "Secondary", "0552484650", "0541177916");
-    Enfant p3 = new Enfant("Michael", "Johnson", date3, "New York", "789 Oak St", "Primary", "0552484650", "0541177916");
-    Enfant p4 = new Enfant("Emily", "Brown", date4, "Berlin", "101 Pine St", "Secondary", "0552484650", "0541177916");
-    List<Enfant> enfantspatients = List.of(p1, p2, p3, p4);
+//    Enfant p1 = new Enfant("kadoum", "amine", date1, "Paris", "123 Main St", "Primary", "0552484650", "0541177916");
+//    Enfant p2 = new Enfant("lattari", "alenas", date2, "London", "456 Elm St", "Secondary", "0552484650", "0541177916");
+//    Enfant p3 = new Enfant("nemamcha", "oussama", date3, "New York", "789 Oak St", "Primary", "0552484650", "0541177916");
+//    Enfant p4 = new Enfant("khiali", "imad", date4, "Berlin", "101 Pine St", "Secondary", "0552484650", "0541177916");
+
 
     @FXML
     private TableView<Adulte> adultesTable;
@@ -52,13 +54,72 @@ public class PatientsSceneController implements Initializable {
 //    LocalDate date4 = LocalDate.of(2003, 4, 4);
 
     // Create adulte objects with real data
-    Adulte a1 = new Adulte("John", "Doe", date1, "Paris", "123 Main St", "doctorat", "architecte", "0541177916");
-    Adulte a2 = new Adulte("Jane", "Smith", date2, "London", "456 Elm St", "liscence", "medecin", "0541177916");
-    Adulte a3 = new Adulte("Michael", "Johnson", date3, "New York", "789 Oak St", "bacallauriat", "ingenieur", "0541177916");
-    Adulte a4 = new Adulte("Emily", "Brown", date4, "Berlin", "101 Pine St", "master", "professeur", "0541177916");
-    List<Adulte> adultespatients = List.of(a1, a2, a3, a4);
+//    Adulte a1 = new Adulte("kadoum", "kamel", date1, "Paris", "123 Main St", "doctorat", "architecte", "0541177916");
+//    Adulte a2 = new Adulte("boudraa", "mourad", date2, "London", "456 Elm St", "liscence", "medecin", "0541177916");
+//    Adulte a3 = new Adulte("aouni", "djamel", date3, "New York", "789 Oak St", "bacallauriat", "ingenieur", "0541177916");
+//    Adulte a4 = new Adulte("Emily", "Brown", date4, "Berlin", "101 Pine St", "master", "professeur", "0541177916");
+    //List<Adulte>  = List.of(a1, a2, a3, a4);
 
+//    Adulte pp1 = new Adulte("becharai", "khalil", 25);
+//    Enfant pp2 = new Enfant("allag", "yacine", 10);
+//    Adulte pp3 = new Adulte("bougussa", "wail", 35);
+//    Enfant pp4 = new Enfant("rabia", "manil", 13);
+
+   // ArrayList<Patient> listPatients = new ArrayList<>(List.of(p1, p2, p3, p4, a1, a2, a3, a4, pp1, pp2, pp3, pp4));
+//    ArrayList<Patient> listPatientsComplet = new ArrayList<>(List.of(p1, p2, p3, p4, a1, a2, a3, a4));
+
+//  public void addPatient(Patient patient){
+//      listPatientsComplet.add(patient);
+//      if (patient instanceof Enfant) {
+//          enfantspatients.add((Enfant) patient);
+//          enfantsTable.getItems().addAll(enfantspatients);
+//          System.out.println("from addPatient enfant: " + patient.getNom());
+//      }
+//      else if (patient instanceof Adulte) {
+//          adultespatients.add((Adulte) patient);
+//          adultesTable.getItems().addAll(adultespatients);
+//
+//      }
+//  }
+
+//    ArrayList<Patient> listpatientsIncomplet = new ArrayList<>(List.of(pp1, pp2, pp3, pp4));
+
+//    public ArrayList<Patient> getListPatients() {
+//        return listPatients;
+//    }
+//    public ArrayList<Patient> getListPatientsComplet() {
+//        return listPatientsComplet;
+//    }
+//    public void setListPatientsComplet(ArrayList<Patient> listPatientsComplet) {
+//        this.listPatientsComplet = listPatientsComplet;
+//
+//
+//    }
+//    public ArrayList<Patient> getListpatientsIncomplet() {
+//        return listpatientsIncomplet;
+//    }
+
+//    DossierPatient dossierPatientp1 = new DossierPatient(p1 , null, null, null);
+//    DossierPatient dossierPatientp2 = new DossierPatient(p2 , null, null, null);
+//    DossierPatient dossierPatientp3 = new DossierPatient(p3 , null, null, null);
+//    DossierPatient dossierPatientp4 = new DossierPatient(p4 , null, null, null);
+//    DossierPatient dossierPatienta1 = new DossierPatient(a1 , null, null, null);
+//    DossierPatient dossierPatienta2 = new DossierPatient(a2 , null, null, null);
+//    DossierPatient dossierPatienta3 = new DossierPatient(a3 , null, null, null);
+//    DossierPatient dossierPatienta4 = new DossierPatient(a4 , null, null, null);
+
+    // dossier patients qui vont faire la consultation
+//    DossierPatient dossierPatientpp1 = new DossierPatient(pp1 , null, null, null);
+//    DossierPatient dossierPatientpp2 = new DossierPatient(pp2 , null, null, null);
+//    DossierPatient dossierPatientpp3 = new DossierPatient(pp3 , null, null, null);
+//    DossierPatient dossierPatientpp4 = new DossierPatient(pp4 , null, null, null);
+
+   // ArrayList<DossierPatient> dossierPatients = new ArrayList<>(List.of(dossierPatientp1, dossierPatientp2, dossierPatientp3, dossierPatientp4, dossierPatienta1, dossierPatienta2, dossierPatienta3, dossierPatienta4));
     //private Patient selectedPatient;
+
+//    public ArrayList<DossierPatient> getDossierPatients() {
+//        return dossierPatients;
+//    }
 
     @FXML
     private ChoiceBox<String> choixPatients;
@@ -76,17 +137,49 @@ ImageView supprimerButtonview;
 
     Patient addedPatient = null;
 
+//    public void setDossierToPatients(){
+//        for (int i = 0; i < listPatientsComplet.size(); i++) {
+//            listPatients.get(i).setDossierPatient(dossierPatients.get(i));
+//        }
+//    }
+    List<Enfant> enfantspatients;
+    List<Adulte> adultespatients;
+    PatientDataManager   dataManager = PatientDataManager.getInstance();;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         choixPatients.getItems().addAll(choix);
         choixPatients.setValue("Enfant"); // initial to avoid null
+
         choixPatients.setOnAction(this::choixPatientsAction);
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             // Call method to filter TableView based on search query
             filterTableView(newValue); // based on query
         });
 
+       dataManager.setDossierToPatients();
 
+         enfantspatients =  dataManager.getPatientsComplet().stream()
+                .filter(patient -> patient instanceof Enfant)
+                .map(patient -> (Enfant) patient)
+                .collect(Collectors.toList());
+
+         adultespatients = dataManager.getPatientsComplet().stream()
+                .filter(patient -> patient instanceof Adulte)
+                .map(patient -> (Adulte) patient)
+                .collect(Collectors.toList());
+
+        generateEnfantsTable();
+        System.out.println("helllloowoowooow");
+
+//        dataManager.setPatientsIncomplet(listpatientsIncomplet);
+//        dataManager.setPatientsComplet(listPatientsComplet);
+//        dataManager.setDossierPatient(dossierPatients);
+//        listPatientsComplet = (ArrayList<Patient>) dataManager.getPatientsComplet();
+
+
+// for (Patient patient : listPatientsComplet){
+//    System.out.println("from patientScene: " + patient.getNom());
+//}
     }
     private void filterTableView(String query) {
         // Filter enfantsTable
@@ -187,6 +280,37 @@ ImageView supprimerButtonview;
         numeroPereColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNumeroPere()));
         numeroPereColumn.setCellFactory(cellFactory);
 
+        TableColumn<Enfant, String> dossierpatientButtonColumn = new TableColumn<>("");
+        // supprimerButtonColumn.setCellValueFactory(data -> supprimerButton);
+        dossierpatientButtonColumn.setCellFactory(new Callback<TableColumn<Enfant, String>, TableCell<Enfant, String>>() {
+            @Override
+            public TableCell<Enfant, String> call(TableColumn<Enfant, String> param) {
+                return new TableCell<>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            HBox hbox = new HBox();
+                            Button button = new Button("Dossier Patient");
+                            button.setCursor(javafx.scene.Cursor.HAND);
+                            button.setOnAction(e -> {
+                                try {
+                                    allerVersDossierPatient(enfantsTable.getSelectionModel().getSelectedItem().getDossierPatient());
+                                } catch (IOException ioException) {
+                                    ioException.printStackTrace();
+                                }
+
+                            });
+                            hbox.getChildren().add(button);
+                            setGraphic(hbox);
+                        }
+                    }
+                };
+            }
+        });
+
         TableColumn<Enfant, String> supprimerButtonColumn = new TableColumn<>("");
         // supprimerButtonColumn.setCellValueFactory(data -> supprimerButton);
         supprimerButtonColumn.setCellFactory(new Callback<TableColumn<Enfant, String>, TableCell<Enfant, String>>() {
@@ -226,7 +350,7 @@ ImageView supprimerButtonview;
 
 
 
-        enfantsTable.getColumns().addAll(nomColumn, prenomColumn , dateNaissanceColumn, lieuNaissanceColumn, adresseColumn, classEtudesColumn, numeroMereColumn, numeroPereColumn , supprimerButtonColumn);
+        enfantsTable.getColumns().addAll(nomColumn, prenomColumn , dateNaissanceColumn, lieuNaissanceColumn, adresseColumn, classEtudesColumn, numeroMereColumn, numeroPereColumn , dossierpatientButtonColumn , supprimerButtonColumn);
 
 
     }
@@ -289,6 +413,38 @@ ImageView supprimerButtonview;
         numeroTelColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNumeroTel()));
         numeroTelColumn.setCellFactory(cellFactory);
 
+        TableColumn<Adulte, String> dossierpatientButtonColumn = new TableColumn<>("");
+        // supprimerButtonColumn.setCellValueFactory(data -> supprimerButton);
+        dossierpatientButtonColumn.setCellFactory(new Callback<TableColumn<Adulte, String>, TableCell<Adulte, String>>() {
+            @Override
+            public TableCell<Adulte, String> call(TableColumn<Adulte, String> param) {
+                return new TableCell<>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            HBox hbox = new HBox();
+                            Button button = new Button("Dossier Patient");
+                            button.setCursor(javafx.scene.Cursor.HAND);
+                            button.setOnAction(e -> {
+                                try {
+
+                                    allerVersDossierPatient(adultesTable.getSelectionModel().getSelectedItem().getDossierPatient());
+                                } catch (IOException ioException) {
+                                    ioException.printStackTrace();
+                                }
+
+                            });
+                            hbox.getChildren().add(button);
+                            setGraphic(hbox);
+                        }
+                    }
+                };
+            }
+        });
+
         TableColumn<Adulte, String> supprimerButtonColumn = new TableColumn<>("");
        // supprimerButtonColumn.setCellValueFactory(data -> supprimerButton);
         supprimerButtonColumn.setCellFactory(new Callback<TableColumn<Adulte, String>, TableCell<Adulte, String>>() {
@@ -326,7 +482,7 @@ ImageView supprimerButtonview;
             }
         });
 
-        adultesTable.getColumns().addAll(nomColumn, prenomColumn , dateNaissanceColumn, lieuNaissanceColumn, adresseColumn, professionColumn , diplomeColumn, numeroTelColumn , supprimerButtonColumn);
+        adultesTable.getColumns().addAll(nomColumn, prenomColumn , dateNaissanceColumn, lieuNaissanceColumn, adresseColumn, professionColumn , diplomeColumn, numeroTelColumn , dossierpatientButtonColumn , supprimerButtonColumn);
     }
 //    public void supprimerButtonAction(Patient patient){
 //        //supprimerButton.setOnAction(this::supprimerButtonAction);
@@ -369,7 +525,24 @@ ImageView supprimerButtonview;
         stage.setScene(calendarScene);
         stage.show();
     }
+    public void allerVersDossierPatient(DossierPatient dossierPatient) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("DossierPatientScene.fxml"));
+        Parent root = loader.load();
 
+        // Get the controller and set the patient details
+        DossierPatientController controller = loader.getController();
+        controller.setPatientDetails(dossierPatient);
+
+        // Switch to the new scene
+        if (dossierPatient.getPatient() instanceof Enfant)
+             stage = (Stage) enfantsTable.getScene().getWindow();
+        else if (dossierPatient.getPatient() instanceof Adulte)
+             stage = (Stage) adultesTable.getScene().getWindow(); // or based on checkbox value
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
     public void showDialog(ActionEvent event){
 
         Dialog dialog = new Dialog();

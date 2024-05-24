@@ -25,6 +25,10 @@ public abstract class Patient {
         this.nom = nom;
         this.prenom = prenom;
         this.age = age;
+        int currentyear = LocalDate.now().getYear();
+        int birthyear = currentyear - age;
+        this.dateNaissance = LocalDate.of(birthyear, 1, 1);
+
 
     }
     public String getNom() {

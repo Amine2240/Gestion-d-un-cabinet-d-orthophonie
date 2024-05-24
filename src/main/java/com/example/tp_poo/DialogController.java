@@ -9,10 +9,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class DialogController {
-
-
 
     // Assume these are passed or initialized appropriately
     private TableView<SeanceSuivi> seanceSuiviTable;
@@ -36,7 +35,7 @@ public class DialogController {
 
     }
 
-    public Node createFaireSeanceSuiviContent(TableView<SeanceSuivi> seanceSuiviTable,TextField nomField, TextField prenomField, NumericTextField agefield, TextField lieuNaissanceField, TextField adresseField, TextField professionField, TextField diplomeField, NumericTextField numeroTelField, TextField classEtudesField, NumericTextField numeroMereField, NumericTextField numeroPereField) {
+    public Node createFaireSeanceSuiviContent(TableView<SeanceSuivi> seanceSuiviTable,TextField nomField, TextField prenomField, NumericTextField agefield, TextField lieuNaissanceField, TextField adresseField, TextField professionField, TextField diplomeField, NumericTextField numeroTelField, TextField classEtudesField, NumericTextField numeroMereField, NumericTextField numeroPereField , FicheSuivi ancienneficheSuivi) {
         System.out.println("createFaireSeanceSuiviContent");
         VBox vbox = new VBox();
         vbox.setSpacing(10);
@@ -115,13 +114,45 @@ public class DialogController {
         TextArea projetTherapeutique = new TextArea();
 
         Label label10= new Label(" Fiche de suivi  : ");
-        Button validerButton = new Button("creer Bo et fiche de suivi");
+        VBox vboxFicheSuivi = new VBox();
+        Label label11 = new Label("Objectifs : ");
+        VBox vboxObjectifs = new VBox();
+        for (Objectif objectif : ancienneficheSuivi.getListObjectifs()) {
+            Label objectifLabel = new Label(objectif.getNomObjectif() + " _______________ " + objectif.getCategorieObjectif().toString());
+            vboxObjectifs.getChildren().add(objectifLabel);
+        }
+        Label label12 = new Label("Note Objectifs : ");
+        TextField noteObjectifsField = new TextField();
+        noteObjectifsField.setPromptText("Note Objectifs");
+        Label label13 = new Label("Objectifs Atteints : ");
+        HBox hbox = new HBox();
+        RadioButton optionoui = new RadioButton("Oui");
+        RadioButton optionnon = new RadioButton("Non");
+        hbox.getChildren().addAll(optionoui, optionnon);
+        ToggleGroup group = new ToggleGroup();
+        optionoui.setToggleGroup(group);
+        optionnon.setToggleGroup(group);
+        vboxFicheSuivi.getChildren().addAll(label11, vboxObjectifs, label12, noteObjectifsField, label13, hbox);
+        Button validerButton = new Button("sauvergarder fiche de suivi");
+        validerButton.setDisable(true);
+        group.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (optionoui.isSelected()) {
+                validerButton.setDisable(false);
+                validerButton.setOnAction(e -> {
+//                    ancienneficheSuivi.setNoteObjectifs(Double.parseDouble(noteObjectifsField.getText()));
+//                    ancienneficheSuivi.setObjectifsatteints(true);
+//                    System.out.println("fiche de suivi enregistrée");
+                });
+            } else {
+                validerButton.setDisable(true);
+            }
+        });
 
-        vbox.getChildren().addAll(label1, label3, label4, testqcuNode, label5, testqcmNode, label6, testRpsLibresNode, label7, testExercicesNode, label8, diagnostic, label9, projetTherapeutique,label10, validerButton);
+        vbox.getChildren().addAll(label1, label3, label4, testqcuNode, label5, testqcmNode, label6, testRpsLibresNode, label7, testExercicesNode, label8, diagnostic, label9, projetTherapeutique,label10,vboxFicheSuivi, validerButton);
         return vbox;
     }
 
-    public Node createFaireConsultationContent(TableView<Consultation> consulationsTable,TextField nomField, TextField prenomField, NumericTextField agefield, TextField lieuNaissanceField, TextField adresseField, TextField professionField, TextField diplomeField, NumericTextField numeroTelField, TextField classEtudesField, NumericTextField numeroMereField, NumericTextField numeroPereField){
+    public Node createFaireConsultationContent(PatientDataManager patientDataManager,TableView<Consultation> consulationsTable, TextField nomField, TextField prenomField, NumericTextField agefield, TextField lieuNaissanceField, TextField adresseField, TextField professionField, TextField diplomeField, NumericTextField numeroTelField, TextField classEtudesField, NumericTextField numeroMereField, NumericTextField numeroPereField){
         VBox vbox = new VBox();
         vbox.setSpacing(10);
         vbox.setPadding(new Insets(10, 10, 10, 10));
@@ -223,6 +254,19 @@ public class DialogController {
                     }
                     //Bo bo1 = new Bo(testAnamnese1, testqcu1, testqcm1, testRpsLibres1, testExerices1, diagnostic.getValue(), projetTherapeutique.getText());
                     System.out.println("information patient enregistrées");
+                    //supprimer la consultation car elle est faite
+                    //consulationsTable.getItems().remove(selectedConsultation);
+                    //listPatientscomplets.add(selectedConsultation.getPatient());
+                    //patientDataManager.addPatient(selectedConsultation.getPatient());
+                   // patientDataManager.getPatientsComplet().add(selectedConsultation.getPatient());
+                    patientDataManager.addPatient(selectedConsultation.getPatient());
+                    DossierPatient dossierPatient = new DossierPatient(selectedConsultation.getPatient(), null, null, null);
+                    patientDataManager.addDossierPatient(dossierPatient);
+                    patientDataManager.getPatientsIncomplet().remove(selectedConsultation.getPatient());
+                    patientDataManager.setPatientsIncomplet(patientDataManager.getPatientsIncomplet());
+                    //consulationsTable.getItems().remove(selectedConsultation);
+
+                    //ajouter au liste des dossiers
                 });
             } else {
                 validerButton.setDisable(true);
@@ -332,9 +376,11 @@ public class DialogController {
         });
         hbox.getChildren().addAll(heuredebutlabel, heureDebutHourPicker , heuredebutlabel2, heureDebutMinutePicker);
 
-
+         nomField.clear(); // due to his previsous value
+        nomField.setEditable(true);
         nomField.setPromptText("Nom patient");
-
+        prenomField.clear();
+        prenomField.setEditable(true);
         prenomField.setPromptText("Prenom patient");
 
         typePatient.getItems().addAll("Enfant", "Adulte");

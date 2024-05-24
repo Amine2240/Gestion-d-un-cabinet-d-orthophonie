@@ -37,54 +37,19 @@
       </AnchorPane>
       <AnchorPane layoutX="211.0" layoutY="2.0" prefHeight="527.0" prefWidth="613.0">
          <children>
-            <Label layoutX="29.0" layoutY="14.0" text="Dossier Patient n°= 2">
+            <Label fx:id="dossierNumberLabel" layoutX="74.0" layoutY="14.0" text="Dossier Patient n°= 2">
                <font>
                   <Font name="System Bold Italic" size="24.0" />
                </font>
             </Label>
-            <ImageView fitHeight="141.0" fitWidth="162.0" layoutX="471.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageView" fitHeight="141.0" fitWidth="162.0" layoutX="471.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../Dropbox/PC/Downloads/Amine2.png" />
                </image>
             </ImageView>
-            <Label layoutX="22.0" layoutY="67.0" text="nom : ">
+            <Label fx:id="nameLabel" layoutX="23.0" layoutY="68.0" prefHeight="20.0" prefWidth="173.0" text="kadoum">
                <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <Label layoutX="22.0" layoutY="89.0" text="prenom :">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <Label layoutX="20.0" layoutY="111.0" text="Date Naissance :">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <Label layoutX="227.0" layoutY="89.0" text="Lieu Naissance : ">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <Label layoutX="20.0" layoutY="133.0" text="Adresse : ">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <Label layoutX="226.0" layoutY="111.0" text="Profession :">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <Label layoutX="226.0" layoutY="67.0" text="Diplome :">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <Label layoutX="226.0" layoutY="133.0" text="Num telephone :">
-               <font>
-                  <Font size="13.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Label layoutX="20.0" layoutY="162.0" text="liste des Rendez-Vous : ">
@@ -120,6 +85,46 @@
                   <TableColumn prefWidth="75.0" text="C2" />
                </columns>
             </TableView>
+            <Button layoutX="13.0" layoutY="19.0" mnemonicParsing="false" onAction="#allerVersListsPatients" prefHeight="26.0" prefWidth="37.0" text="Retour">
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Button>
+            <Label fx:id="prenomLabel" layoutX="23.0" layoutY="90.0" prefHeight="20.0" prefWidth="166.0" text="amine">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="telephonePereOudiplomeLabel" layoutX="240.0" layoutY="112.0" prefHeight="20.0" prefWidth="221.0" text="Ingenieur">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lieuNaissanceLabel" layoutX="240.0" layoutY="90.0" prefHeight="20.0" prefWidth="189.0" text="hammamat">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="telephoneMereOutelephoneLabel" layoutX="240.0" layoutY="134.0" prefHeight="20.0" prefWidth="222.0" text="0541791761">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="addressLabel" layoutX="23.0" layoutY="134.0" prefHeight="20.0" prefWidth="174.0" text="Ouled fayet">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="classeEtudeOuprofessionLabel" layoutX="240.0" layoutY="68.0" prefHeight="20.0" prefWidth="201.0" text="informatique">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="dateNaissanceLabel" layoutX="21.0" layoutY="112.0" prefHeight="20.0" prefWidth="202.0" text="22/10/2004">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

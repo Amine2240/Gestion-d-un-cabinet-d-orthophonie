@@ -52,24 +52,29 @@ public class RendezVousController implements Initializable {
     LocalDate rendezVousdate3 = LocalDate.of(2024, 3, 3);
     LocalDate rendezVousdate4 = LocalDate.of(2024, 4, 4);
 
-    Adulte p1 = new Adulte("John", "Doe", 25);
-    Enfant p2 = new Enfant("Jane", "Smith", 10);
-    Adulte p3 = new Adulte("Michael", "Johnson", 35);
-    Enfant p4 = new Enfant("Emily", "Brown", 13);
+//    PatientsSceneController patientsSceneController ;
+    //ArrayList<Patient> patients = patientsSceneController.getListPatients();
 
-//    Adulte p1 = new Adulte("John", "Doe", date1, "Paris", "123 Main St", "doctorat", "architecte", "0541177916");
-//    Enfant p2 = new Enfant("Jane", "Smith", date2, "London", "456 Elm St", "Secondary", "0552484650", "0541177916");
-//    Adulte p3 = new Adulte("Michael", "Johnson", date3, "New York", "789 Oak St", "bacallauriat", "ingenieur", "0541177916");
-//    Enfant p4 = new Enfant("Emily", "Brown", date4, "Berlin", "101 Pine St", "Secondary", "0552484650", "0541177916");
 
-    // Create Enfant objects with real data
-    Consultation c1 = new Consultation(TypePatient.ADULTE , rendezVousdate1 , time1 , p1);
+    ArrayList<Patient> patientsIncomplet ;
+    Patient pp1;
+    Patient pp2;
+    Patient pp3;
+    Patient pp4;
+    ArrayList<Patient> patientsComplet ;
+    Patient p1;
+    Patient p2;
+    Patient p3;
+    Patient p4;
 
-    Consultation c2 = new Consultation(TypePatient.ENFANT , rendezVousdate2 , time4  , p2);
-    Consultation c3 = new Consultation(TypePatient.ADULTE , rendezVousdate3 , time2  , p3);
-    Consultation c4 = new Consultation(TypePatient.ENFANT , rendezVousdate4 , time5  , p4);
+    ArrayList<DossierPatient> dossierPatients ;
 
-    List<Consultation> consultations = new ArrayList<>(List.of(c1, c2, c3, c4 )) ;
+    Consultation c1 ;
+    Consultation c2 ;
+    Consultation c3 ;
+    Consultation c4 ;
+
+    List<Consultation> consultations  ;
     //private Set<Consultation> consultationSet = new HashSet<>(consultations);
 
     @FXML
@@ -80,11 +85,11 @@ public class RendezVousController implements Initializable {
 //    LocalDate date4 = LocalDate.of(2003, 4, 4);
 
     // Create adulte objects with real data
-    SeanceSuivi s1 = new SeanceSuivi(rendezVousdate1 , time6  , Deroulement.ENPRESENTIEL , p1);
-    SeanceSuivi s2 = new SeanceSuivi(rendezVousdate2 , time7  , Deroulement.ENLIGNE, p2);
-    SeanceSuivi s3 = new SeanceSuivi(rendezVousdate3 , time8  , Deroulement.ENPRESENTIEL, p3);
-    SeanceSuivi s4 = new SeanceSuivi(rendezVousdate4 , time3  , Deroulement.ENLIGNE, p4);
-    List<SeanceSuivi> seancesSuivis = new ArrayList<>(List.of(s1, s2, s3, s4)) ;
+    SeanceSuivi s1 ;
+    SeanceSuivi s2 ;
+    SeanceSuivi s3 ;
+    SeanceSuivi s4 ;
+    List<SeanceSuivi> seancesSuivis  ;
 
     @FXML
     private TableView<Atelier> atelierTable = new TableView<>();
@@ -124,18 +129,22 @@ public class RendezVousController implements Initializable {
     private TextField classEtudesField  = new TextField();
     private NumericTextField numeroMereField  = new NumericTextField();
     private NumericTextField numeroPereField  = new NumericTextField();
+
+    private TextField consultationDialoglieuNaissanceField  = new TextField();
+    private TextField consultationDialogadresseField  = new TextField();
+    private TextField consultationDialogdiplomeField  = new TextField();
+    private TextField consultationDialogprofessionField  = new TextField();
+    private NumericTextField consultationDialognumeroTelField  = new NumericTextField();
+    private TextField consultationDialogclassEtudesField  = new TextField();
+    private NumericTextField consultationDialognumeroMereField  = new NumericTextField();
+    private NumericTextField consultationDialognumeroPereField  = new NumericTextField();
     private LocalTime heuredebut;
     //private LocalTime heurefin;
     private ChoiceBox<String> deroulement = new ChoiceBox<>();
     private NumericTextField numdossierfield  = new NumericTextField();
 
-    DossierPatient dossierPatient1 = new DossierPatient(p1 , null , null , null);
-    DossierPatient dossierPatient2 = new DossierPatient(p2 , null , null , null);
-    DossierPatient dossierPatient3 = new DossierPatient(p3 , null , null , null);
-    DossierPatient dossierPatient4 = new DossierPatient(p4 , null , null , null);
-    List<DossierPatient> dossierPatients = List.of(dossierPatient1, dossierPatient2, dossierPatient3, dossierPatient4);
 
-    List<RendezVous> rendezVousList = new ArrayList<>(List.of(c1, c2, c3, c4 , s1 , s2 , s3 , s4 ));
+    List<RendezVous> rendezVousList;
 
 
     TestsEtAnamnesesController testsEtAnamnesesController = new TestsEtAnamnesesController();
@@ -187,6 +196,13 @@ public class RendezVousController implements Initializable {
 //    GenerateTabeController generateTableController = new GenerateTabeController( consulationsTable,  dateConsultationPicker,  heureDebutHourPicker,  heureDebutMinutePicker,  durationField,  seanceSuiviTable,  atelierTable,  consultations,  testAnamnese1,  testqcm1,  testqcu1,  testRpsLibres1,  testExerices1,  testsEtAnamnesesController);
 
     DialogController dialogController = new DialogController(testsEtAnamnesesController, testAnamnese1, testqcu1, testqcm1, testRpsLibres1, testExerices1);
+
+    Objectif objectif1 = new Objectif(" nom Objectif 1", CategoriesObjectif.COURT_TERME);
+    Objectif objectif2 = new Objectif(" nom Objectif 2", CategoriesObjectif.LONG_TERME);
+    Objectif objectif3 = new Objectif(" nom Objectif 3", CategoriesObjectif.COURT_TERME);
+    ArrayList<Objectif> listObjectifs1 = new ArrayList<>(List.of(objectif1, objectif2, objectif3));
+    FicheSuivi ficheSuivi1 = new FicheSuivi(listObjectifs1);
+    PatientDataManager patientDataManager = PatientDataManager.getInstance();
     public void initialize(URL url, ResourceBundle resourceBundle) {
         choixRendezVous.getItems().addAll(choix);
         choixRendezVous.setValue("Consultation"); // initial to avoid null
@@ -195,11 +211,59 @@ public class RendezVousController implements Initializable {
 //            // Call method to filter TableView based on search query
 //            filterTableView(newValue); // based on query
 //        });
-        p1.setDossierPatient(dossierPatient1);
-        p2.setDossierPatient(dossierPatient2);
-        p3.setDossierPatient(dossierPatient3);
-        p4.setDossierPatient(dossierPatient4);
+        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("PatientsScene.fxml"));
+//            loader.load();
+//            patientsSceneController = loader.getController();
+//             patientDataManager = PatientDataManager.getInstance();
+            patientsIncomplet = (ArrayList<Patient>) patientDataManager.getPatientsIncomplet();
+//             patientsIncomplet = patientsSceneController.getListpatientsIncomplet();
+            pp1 = patientsIncomplet.size() > 0 ? patientsIncomplet.get(0) : new Enfant("none", "none", 0);
+            pp2 = patientsIncomplet.size() > 1 ? patientsIncomplet.get(1) : new Enfant("none", "none", 0);
+            pp3 = patientsIncomplet.size() > 2 ? patientsIncomplet.get(2) : new Enfant("none", "none", 0);
+            pp4 = patientsIncomplet.size() > 3 ? patientsIncomplet.get(3) : new Enfant("none", "none", 0);
+//             patientsComplet = patientsSceneController.getListPatientsComplet();
+                patientsComplet = (ArrayList<Patient>) patientDataManager.getPatientsComplet();
+//                for (Patient patient : patientsComplet) {
+//                    p = patient;
+//                }
+             p1 = patientsComplet.get(0);
+             p2 = patientsComplet.get(1);
+             p3 = patientsComplet.get(2);
+             p4 = patientsComplet.get(3);
 
+//             dossierPatients = patientsSceneController.getDossierPatients();
+            dossierPatients = (ArrayList<DossierPatient>) patientDataManager.getDossierPatient();
+            patientDataManager.setDossierToPatients();
+
+            c1 = new Consultation(TypePatient.ADULTE , rendezVousdate1 , time1 , pp1);
+            c2 = new Consultation(TypePatient.ENFANT , rendezVousdate2 , time4  , pp2);
+            c3 = new Consultation(TypePatient.ADULTE , rendezVousdate3 , time2  , pp3);
+            c4 = new Consultation(TypePatient.ENFANT , rendezVousdate4 , time5  , pp4);
+
+             consultations = new ArrayList<>(List.of(c1, c2, c3, c4 )) ;
+            //private Set<Consultation> consultationSet = new HashSet<>(consultations);
+
+            // Create adulte objects with real data
+            s1 = new SeanceSuivi(rendezVousdate1 , time6  , Deroulement.ENPRESENTIEL , p1);
+            s2 = new SeanceSuivi(rendezVousdate2 , time7  , Deroulement.ENLIGNE, p2);
+            s3 = new SeanceSuivi(rendezVousdate3 , time8  , Deroulement.ENPRESENTIEL, p3);
+            s4 = new SeanceSuivi(rendezVousdate4 , time3  , Deroulement.ENLIGNE, p4);
+             seancesSuivis = new ArrayList<>(List.of(s1, s2, s3, s4)) ;
+
+             rendezVousList = new ArrayList<>(List.of(c1, c2, c3, c4 , s1 , s2 , s3 , s4 ));
+
+//            ArrayList<Patient> patientsIncomplet = (ArrayList<Patient>) patientsSceneController.getListPatientsIncomplet();
+           // patientsSceneController.setDossierToPatients();
+            //patientDataManager.setDossierPatient();
+            // Now you can work with patientsIncomplet or any other data from PatientsSceneController
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        generateConsultationsTable();
     }
     public void generateConsultationsTable(){
         if (!seanceSuiviTable.getItems().isEmpty()) {
@@ -276,7 +340,11 @@ public class RendezVousController implements Initializable {
                             Button button = new Button("faire consultation");
                             button.setCursor(javafx.scene.Cursor.HAND);
                             button.setOnAction(e -> {
-                                showFaireConsultationDialog(e);
+                                try {
+                                    showFaireConsultationDialog(e);
+                                } catch (IOException ex) {
+                                    throw new RuntimeException(ex);
+                                }
 
                             });
                             hbox.getChildren().add(button);
@@ -572,22 +640,34 @@ public class RendezVousController implements Initializable {
 
 
     }
-    public void showFaireConsultationDialog(ActionEvent event) {
+    public void showFaireConsultationDialog(ActionEvent event) throws IOException {
         Dialog dialog = new Dialog();
         dialog.setTitle("Faire consultation");
         dialog.setHeaderText("Faire consultation");
         dialog.setResizable(true);
         dialog.getDialogPane().setPrefSize(800 , 600);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
-        ScrollPane scrollPane = new ScrollPane(dialogController.createFaireConsultationContent(consulationsTable,nomField, prenomField, agefield, lieuNaissanceField, adresseField, professionField, diplomeField, numeroTelField, classEtudesField, numeroMereField, numeroPereField));
+        ScrollPane scrollPane = new ScrollPane(dialogController.createFaireConsultationContent(patientDataManager, consulationsTable,nomField, prenomField, agefield, consultationDialoglieuNaissanceField, consultationDialogadresseField, consultationDialogprofessionField, consultationDialogdiplomeField, consultationDialognumeroTelField, consultationDialogclassEtudesField, consultationDialognumeroMereField, consultationDialognumeroPereField));
         scrollPane.setFitToWidth(true);
         dialog.getDialogPane().setContent(scrollPane);
         Optional result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             // Call method to add consultation
             //addConsultation(addedRendezVous);
+            // instancier le dossier et le bo
+            ;
+            //patientsSceneController.setListPatientsComplet(patientsComplet);
+            ;
+            allerVersListePatients(event);
+
         }
     }
+    public void allerVersListePatients(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PatientsScene.fxml")));
+       Stage stage =(Stage)((Node)event.getSource()).getScene().getWindow();
+       Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();}
     public void showFaireSeanceSuiviDialog(ActionEvent event) {
         Dialog dialog = new Dialog();
         dialog.setTitle("Faire Seance suivi");
@@ -595,18 +675,17 @@ public class RendezVousController implements Initializable {
         dialog.setResizable(true);
         dialog.getDialogPane().setPrefSize(800 , 600);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
-        ScrollPane scrollPane = new ScrollPane(dialogController.createFaireSeanceSuiviContent( seanceSuiviTable,nomField, prenomField, agefield, lieuNaissanceField, adresseField, professionField, diplomeField, numeroTelField, classEtudesField, numeroMereField, numeroPereField));
+        ScrollPane scrollPane = new ScrollPane(dialogController.createFaireSeanceSuiviContent(seanceSuiviTable,nomField, prenomField, agefield, lieuNaissanceField, adresseField, professionField, diplomeField, numeroTelField, classEtudesField, numeroMereField, numeroPereField , ficheSuivi1));
         scrollPane.setFitToWidth(true);
         dialog.getDialogPane().setContent(scrollPane);
         Optional result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            // Call method to add consultation
-            //addConsultation(addedRendezVous);
+            //instancier le bo et la fiche de suivi
         }
     }
     public boolean patientExiste(String nom , String prenom){
-        for (DossierPatient dossierPatient : dossierPatients) {
-            if (dossierPatient.getPatient().getNom().equals(nom) && dossierPatient.getPatient().getPrenom().equals(prenom) ) {
+        for (Patient patient: patientsIncomplet) {
+            if (patient.getNom().equals(nom) && patient.getPrenom().equals(prenom) ) {
                 return true;
             }
         }
@@ -675,7 +754,6 @@ public class RendezVousController implements Initializable {
         stage.setScene(calendarScene);
         stage.show();
     }
-
     public void setHeureDebut(LocalTime heuredebut) { // to set the value of heuredebut in dialog controller (createConsultationContent and createSeanceSuiviContent methods    )
         this.heuredebut = heuredebut;
     }

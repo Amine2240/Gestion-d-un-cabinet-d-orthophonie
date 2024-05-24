@@ -7,4 +7,10 @@ public class Objectif {
         this.nomObjectif = nomObjectif;
         this.categorieObjectif = categorieObjectif;
     }
+    public String getNomObjectif() {
+        return nomObjectif;
+    }
+    public CategoriesObjectif getCategorieObjectif() {
+        return categorieObjectif;
+    }
 }

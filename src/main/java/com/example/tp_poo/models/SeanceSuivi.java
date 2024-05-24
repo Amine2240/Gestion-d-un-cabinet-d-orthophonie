@@ -18,4 +18,16 @@ public class SeanceSuivi extends RendezVous {
     public Deroulement getTypeSeance() {
         return typeSeance;
     }
+    public FicheSuivi getFicheSuivi() {
+        return ficheSuivi;
+    }
+    public void setFicheSuivi(FicheSuivi ficheSuivi) {
+        this.ficheSuivi = ficheSuivi;
+    }
+    public int getNumeroDossierPatient() {
+        return numeroDossierPatient;
+    }
+    public void setNumeroDossierPatient(int numeroDossierPatient) {
+        this.numeroDossierPatient = numeroDossierPatient;
+    }
 }
