@@ -10,6 +10,9 @@ import javafx.scene.layout.VBox;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class DialogController {
 
@@ -223,6 +226,8 @@ public class DialogController {
         diagnostic.getItems().addAll(TroubleCategries.values());
         Label label9 =  new Label(" etape 4 : projet thérapeutique :  ");
         TextArea projetTherapeutique = new TextArea();
+        Label label11 = new Label("orthophoniste observation");
+        TextArea orthophonisteObservation = new TextArea();
         Label label10= new Label(" Prise en charge : ");
         HBox hbox = new HBox();
         RadioButton optionoui = new RadioButton("Oui");
@@ -231,6 +236,7 @@ public class DialogController {
         ToggleGroup group = new ToggleGroup();
         optionoui.setToggleGroup(group);
         optionnon.setToggleGroup(group);
+
         Button validerButton = new Button("creer Bo et dossier patient");
         validerButton.setDisable(true);
         group.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
@@ -254,13 +260,26 @@ public class DialogController {
                     }
                     //Bo bo1 = new Bo(testAnamnese1, testqcu1, testqcm1, testRpsLibres1, testExerices1, diagnostic.getValue(), projetTherapeutique.getText());
                     System.out.println("information patient enregistrées");
-                    //supprimer la consultation car elle est faite
-                    //consulationsTable.getItems().remove(selectedConsultation);
-                    //listPatientscomplets.add(selectedConsultation.getPatient());
-                    //patientDataManager.addPatient(selectedConsultation.getPatient());
-                   // patientDataManager.getPatientsComplet().add(selectedConsultation.getPatient());
+
                     patientDataManager.addPatient(selectedConsultation.getPatient());
-                    DossierPatient dossierPatient = new DossierPatient(selectedConsultation.getPatient(), null, null, null);
+                    ArrayList<Test> listTests = new ArrayList<>(List.of(testqcu1, testqcm1, testRpsLibres1, testExerices1));
+                    EpreuveClinique epreuveClinique = new EpreuveClinique("epreuve clinique observation 1 "  ,listTests);
+                    ArrayList<EpreuveClinique> listEpreuvesCliniques = new ArrayList<>(List.of(epreuveClinique));
+                    Trouble trouble1 = new Trouble("nom trouble", diagnostic.getValue());
+                    ArrayList<Trouble> troubles = new ArrayList<>(List.of(trouble1));
+                    Diagnostic diagnostic1 = new Diagnostic(troubles);
+                    ProjetTherapeutique projetTherapeutique1 = new ProjetTherapeutique(projetTherapeutique.getText());
+                    Bo bo1 = new Bo( selectedConsultation.getPatient(),testAnamnese1, listEpreuvesCliniques, diagnostic1, projetTherapeutique1);
+                    ArrayList<Bo> listBos = new ArrayList<>(List.of(bo1));
+                    AgendaManager agendaManager = AgendaManager.getInstance();
+                    ArrayList<RendezVous> listRendezVous = new ArrayList<>();
+                    for (RendezVous rdv : agendaManager.agenda.getListRendezVous()) {
+                        if (rdv.getPatient().getNom().equals(selectedConsultation.getPatient().getNom()) && rdv.getPatient().getPrenom().equals(selectedConsultation.getPatient().getPrenom())){
+                            rdv.setObservation(orthophonisteObservation.getText());
+                            listRendezVous.addAll(Collections.singleton(rdv));
+                        }
+                    }
+                    DossierPatient dossierPatient = new DossierPatient(selectedConsultation.getPatient(), listBos, listRendezVous, null);
                     patientDataManager.addDossierPatient(dossierPatient);
                     patientDataManager.getPatientsIncomplet().remove(selectedConsultation.getPatient());
                     patientDataManager.setPatientsIncomplet(patientDataManager.getPatientsIncomplet());
@@ -273,7 +292,7 @@ public class DialogController {
             }
         });
 
-        vbox.getChildren().addAll(label1, label2, testAnamneseNode, label3, label4, testqcuNode, label5, testqcmNode, label6, testRpsLibresNode, label7, testExercicesNode, label8, diagnostic, label9, projetTherapeutique, label10, hbox, validerButton);
+        vbox.getChildren().addAll(label1, label2, testAnamneseNode, label3, label4, testqcuNode, label5, testqcmNode, label6, testRpsLibresNode, label7, testExercicesNode, label8, diagnostic, label9, projetTherapeutique, label11, orthophonisteObservation , label10, hbox , validerButton);
         return vbox;
     }
 

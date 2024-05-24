@@ -190,7 +190,7 @@ public class Orthophoniste {
     }
 
 
-public DossierPatient creerDossierPatient(Patient patient, ArrayList<Bo> listBos, Set<RendezVous> listRdvous, ArrayList<FicheSuivi> listFicheSuivis) {
+public DossierPatient creerDossierPatient(Patient patient, ArrayList<Bo> listBos, ArrayList<RendezVous> listRdvous, ArrayList<FicheSuivi> listFicheSuivis) {
  return new DossierPatient(patient, listBos, listRdvous, listFicheSuivis);
 }
 public FicheSuivi creerFicheSuivi( ArrayList<Objectif> Objectifs) {

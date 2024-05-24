@@ -33,6 +33,7 @@ public class PatientDataManager {
     Adulte pp3 = new Adulte("bougussa", "wail", 35);
     Enfant pp4 = new Enfant("rabia", "manil", 13);
 
+
     DossierPatient dossierPatientp1 = new DossierPatient(p1 , null, null, null);
     DossierPatient dossierPatientp2 = new DossierPatient(p2 , null, null, null);
     DossierPatient dossierPatientp3 = new DossierPatient(p3 , null, null, null);
@@ -51,9 +52,7 @@ public class PatientDataManager {
     private List<DossierPatient>  dossierPatients = new ArrayList<>(List.of(dossierPatientp1, dossierPatientp2, dossierPatientp3, dossierPatientp4, dossierPatienta1, dossierPatienta2, dossierPatienta3, dossierPatienta4));
     // Other necessary fields and methods
 
-    private PatientDataManager() {
-        // Initialize your data here
-    }
+
 
     public static PatientDataManager getInstance() {
         if (instance == null) {

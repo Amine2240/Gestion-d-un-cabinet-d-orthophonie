@@ -43,4 +43,8 @@ public abstract class RendezVous {
     public Patient getPatient(){
         return patient;
     }
+
+    public String getObservation() {
+        return observation;
+    }
 }

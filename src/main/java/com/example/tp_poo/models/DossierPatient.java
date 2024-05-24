@@ -8,9 +8,9 @@ public class DossierPatient {
     private static int numeroDossierIncrement = 0;
     private Patient patient;
     private ArrayList<Bo> listBos;//faire la logique de lanamnese
-    private Set<RendezVous> listRdvous;
+    private ArrayList<RendezVous> listRdvous;
     private ArrayList<FicheSuivi> listFicheSuivis;
-    public DossierPatient( Patient patient, ArrayList<Bo> listBos, Set<RendezVous> listRdvous, ArrayList<FicheSuivi> listFicheSuivis) {
+    public DossierPatient( Patient patient, ArrayList<Bo> listBos, ArrayList<RendezVous> listRdvous, ArrayList<FicheSuivi> listFicheSuivis) {
         setNumeroDossier();
 //        incrementNumeroDossier();
         this.patient = patient;
@@ -30,7 +30,7 @@ public class DossierPatient {
         return patient;
     }
 
-    public Set<RendezVous> getListRdvous() {
+    public ArrayList<RendezVous> getListRdvous() {
         return listRdvous;
     }
     public ArrayList<Bo> getListBos() {

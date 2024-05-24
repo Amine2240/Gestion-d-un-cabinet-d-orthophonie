@@ -5,5 +5,8 @@ public class ProjetTherapeutique {
     public ProjetTherapeutique(String textDemarcheTherapeutique){
         this.textDemarcheTherapeutique = textDemarcheTherapeutique;
     }
+    public String getTextDemarcheTherapeutique(){
+        return textDemarcheTherapeutique;
+    }
 
 }

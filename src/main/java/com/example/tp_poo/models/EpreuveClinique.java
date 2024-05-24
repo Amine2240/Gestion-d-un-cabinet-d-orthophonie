@@ -10,4 +10,10 @@ public class EpreuveClinique {
         this.observationClinique = observationClinique;
 
     }
+    public String getObservationClinique(){
+        return observationClinique;
+    }
+    public ArrayList<Test> getListTests(){
+        return listTests;
+    }
 }

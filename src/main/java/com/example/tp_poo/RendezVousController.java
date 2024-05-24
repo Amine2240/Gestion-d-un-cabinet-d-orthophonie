@@ -146,6 +146,8 @@ public class RendezVousController implements Initializable {
 
     List<RendezVous> rendezVousList;
 
+    Agenda agenda;
+
 
     TestsEtAnamnesesController testsEtAnamnesesController = new TestsEtAnamnesesController();
     ObservableList<QuestionAnamnese> anamneses1 = FXCollections.observableArrayList(
@@ -252,6 +254,8 @@ public class RendezVousController implements Initializable {
              seancesSuivis = new ArrayList<>(List.of(s1, s2, s3, s4)) ;
 
              rendezVousList = new ArrayList<>(List.of(c1, c2, c3, c4 , s1 , s2 , s3 , s4 ));
+
+             agenda = new Agenda((ArrayList<RendezVous>) rendezVousList);
 
 //            ArrayList<Patient> patientsIncomplet = (ArrayList<Patient>) patientsSceneController.getListPatientsIncomplet();
            // patientsSceneController.setDossierToPatients();
