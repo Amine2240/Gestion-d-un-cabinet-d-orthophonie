@@ -41,12 +41,26 @@ public class TestsEtAnamnesesController implements Initializable {
     private NumericTextField nbrePropositions;
     private Button createPropositionsButton;
     private Question questionqcu;
+    private TextField questionQcmEnonce;
+    private NumericTextField nbrePropositionsQcm;
+    private NumericTextField nbrRpsJustesQcm;
+    private Button createPropositionsButtonQcm;
+    private Question questionqcm;
+    private TextField questionRpsLibresEnonce;
+    private Question questionRpsLibres;
+    private Question questionExercice;
+    private TextField nomexo;
+    private TextField consigneexo;
+    private TextField nomMaterielExo;
     private QuestionAnamnese questionanamnese;
     private TextField questionanamneseEnonceField;
     private ChoiceBox<Categories> questionanamneseCategorieField;
    // private List<String> propositionsQcu = new ArrayList<>();
     private TextField reponseJusteField;
     private List<TextField> propositionsQcuFields = new ArrayList<>();
+    private List<TextField> propositionsQcmFields = new ArrayList<>();
+    private List<TextField> reponsesJustesQcmFields;
+    private Button createRpsJustesButton;
 
 
     ObservableList<QuestionQcu>  questionsQcu1 = FXCollections.observableArrayList(
@@ -288,6 +302,69 @@ public class TestsEtAnamnesesController implements Initializable {
 
         }
     }
+//    public void showFormulaireqcm(TestQcm testQcm){
+//        Dialog dialog = new Dialog();
+//        dialog.setHeaderText("Ajouter Test qcm");
+//        dialog.setResizable(true);
+//        dialog.getDialogPane().setPrefSize(480, 320);
+//        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+//        dialog.getDialogPane().setContent(createformulaireQcmContent());
+//        Optional result = dialog.showAndWait();
+//        if (result.isPresent() && result.get() == ButtonType.OK) {
+//            // Extract the text from the TextFields and store in propositionsQcu
+//            List<String> propositionsText = propositionsQcmFields.stream()
+//                    .map(TextField::getText)
+//                    .collect(Collectors.toList());
+//            questionqcm = new QuestionQcm(questionQcuEnonce.getText(), propositionsText, reponsesJustesQcmField);
+//            testQcm.getListQuestionsQcm().add((QuestionQcm) questionqcm);
+//            System.out.println("question qcm ajoutée");
+//            renderTestQCM(testQcm);
+//
+//
+//        }
+//    }
+//    public void showFormulairerpsLibre(TestRpsLibres testRpsLibres){
+//        Dialog dialog = new Dialog();
+//        dialog.setHeaderText("Ajouter Test qcu");
+//        dialog.setResizable(true);
+//        dialog.getDialogPane().setPrefSize(480, 320);
+//        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+//        dialog.getDialogPane().setContent(createformulaireContent());
+//        Optional result = dialog.showAndWait();
+//        if (result.isPresent() && result.get() == ButtonType.OK) {
+//            // Extract the text from the TextFields and store in propositionsQcu
+//            List<String> propositionsText = propositionsQcuFields.stream()
+//                    .map(TextField::getText)
+//                    .collect(Collectors.toList());
+//            questionqcu = new QuestionQcu(questionQcuEnonce.getText(), propositionsText, reponseJusteField.getText());
+//            testQcu.getListQuestionsQcu().add((QuestionQcu) questionqcu);
+//            System.out.println("question qcu ajoutée");
+//            renderTestQCU(testQcu);
+//
+//
+//        }
+//    }
+//    public void showFormulaireExercice(TestExerices testExerices){
+//        Dialog dialog = new Dialog();
+//        dialog.setHeaderText("Ajouter Test qcu");
+//        dialog.setResizable(true);
+//        dialog.getDialogPane().setPrefSize(480, 320);
+//        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+//        dialog.getDialogPane().setContent(createformulaireContent());
+//        Optional result = dialog.showAndWait();
+//        if (result.isPresent() && result.get() == ButtonType.OK) {
+//            // Extract the text from the TextFields and store in propositionsQcu
+//            List<String> propositionsText = propositionsQcuFields.stream()
+//                    .map(TextField::getText)
+//                    .collect(Collectors.toList());
+//            questionqcu = new QuestionQcu(questionQcuEnonce.getText(), propositionsText, reponseJusteField.getText());
+//            testQcu.getListQuestionsQcu().add((QuestionQcu) questionqcu);
+//            System.out.println("question qcu ajoutée");
+//            renderTestQCU(testQcu);
+//
+//
+//        }
+//    }
     public void showFormulaireAnamnese(AnamneseEnfant anamnese) {
         Dialog dialog = new Dialog();
         dialog.setHeaderText("Ajouter Question Anamnese");
@@ -318,6 +395,7 @@ public class TestsEtAnamnesesController implements Initializable {
 
         return  vBox;
     }
+
 
     public Node createformulaireContent(){
         VBox vBox = new VBox();
@@ -352,6 +430,56 @@ public class TestsEtAnamnesesController implements Initializable {
         //fill vbox
         return vBox;
     }
+    public Node createformulaireQcmContent(){
+        VBox vBox = new VBox();
+        questionQcmEnonce = new TextField();
+        questionQcmEnonce.setPromptText("qustion Qcm enonce");
+        nbrePropositionsQcm = new NumericTextField();
+        nbrePropositionsQcm.setPromptText("nombre de propositions");
+        createPropositionsButtonQcm = new Button("Create Propositions qcm");
+        createPropositionsButton.setOnAction(e -> {
+            // Clear existing TextFields if any
+            // vBox.getChildren().removeIf(node -> node instanceof TextField && node != nbrePropositions);
+            // Clear previous propositionsQcu list
+            propositionsQcmFields.clear();
+            // Get the number of propositions from the NumericTextField
+            int numberOfPropositions = Integer.parseInt(nbrePropositionsQcm.getText());
+
+            // Create and add TextFields based on the specified number
+            for (int i = 0; i < numberOfPropositions; i++) {
+                TextField propositionField = new TextField();
+                propositionField.setPromptText("proposition " + (i + 1));
+                vBox.getChildren().add(propositionField);
+                propositionsQcmFields.add(propositionField);
+            }
+        });
+        nbrRpsJustesQcm.setPromptText("nombre de reponses justes");
+        createRpsJustesButton = new Button("Create reponses justes");
+        createPropositionsButton.setOnAction(e -> {
+            // Clear existing TextFields if any
+            // vBox.getChildren().removeIf(node -> node instanceof TextField && node != nbrePropositions);
+            // Clear previous propositionsQcu list
+            propositionsQcmFields.clear();
+            // Get the number of propositions from the NumericTextField
+            int numberOfPropositions = Integer.parseInt(nbrePropositionsQcm.getText());
+
+            // Create and add TextFields based on the specified number
+            for (int i = 0; i < numberOfPropositions; i++) {
+                TextField propositionField = new TextField();
+                propositionField.setPromptText("proposition " + (i + 1));
+                vBox.getChildren().add(propositionField);
+                propositionsQcmFields.add(propositionField);
+            }
+        });
+
+
+        vBox.getChildren().addAll(questionQcuEnonce, nbrePropositions, createPropositionsButton , reponseJusteField);
+
+
+
+        //fill vbox
+        return vBox;
+    }
     public Node renderTestQCM(TestQcm testQcm){
 
         selectedTestVBox.getChildren().clear();
@@ -373,6 +501,11 @@ public class TestsEtAnamnesesController implements Initializable {
             }
             selectedTestVBox.getChildren().addAll(label,propositionsHBox);
         }
+        Button ajouterQuestionQcm = new Button("Ajouter question Qcm");
+        selectedTestVBox.getChildren().add(ajouterQuestionQcm);
+        ajouterQuestionQcm.setOnAction(event -> {
+           // showFormulaire(testQcm);
+        });
         return selectedTestVBox;
     }
     public Node renderTestRpsLibres(TestRpsLibres testRpsLibres){
@@ -390,6 +523,11 @@ public class TestsEtAnamnesesController implements Initializable {
             vboxLibre.getChildren().addAll(label , textArea);
         }
         selectedTestVBox.getChildren().addAll(vboxLibre);
+        Button ajouterQuestionRpslibre = new Button("Ajouter question reponse libres");
+        selectedTestVBox.getChildren().add(ajouterQuestionRpslibre);
+        ajouterQuestionRpslibre.setOnAction(event -> {
+            // showFormulaire(testQcm);
+        });
         return selectedTestVBox;
     }
     public Node renderTestExercices(TestExerices testExerices){
@@ -407,6 +545,11 @@ public class TestsEtAnamnesesController implements Initializable {
 
         }
         selectedTestVBox.getChildren().addAll(vboxExo);
+        Button ajouterQuestionexercice = new Button("Ajouter question exercice");
+        selectedTestVBox.getChildren().add(ajouterQuestionexercice);
+        ajouterQuestionexercice.setOnAction(event -> {
+            // showFormulaire(testQcm);
+        });
         return selectedTestVBox;
     }
     public Node renderTestAnamnese(AnamneseEnfant anamneseEnfant){

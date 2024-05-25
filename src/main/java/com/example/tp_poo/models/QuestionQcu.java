@@ -16,4 +16,7 @@ public class QuestionQcu extends Question {
     public List<String> getListpropositions() {
         return listpropositions;
     }
+    public String getReponseJuste() {
+        return reponsePatient;
+    }
 }

@@ -59,7 +59,7 @@ public class Orthophoniste {
  public void faireBO(Patient patient) {//collecter les informations sur le patient ( on est dans le premier Bo)
 
   ArrayList<QuestionAnamnese> listQuestionsAnamnese1 = new ArrayList<QuestionAnamnese>();
-  Anamnese anamnese1 = new AnamneseEnfant("nom",listQuestionsAnamnese1); // si cetait un adulte on passe son histoire de maladie en parametre
+  AnamneseEnfant anamnese1 = new AnamneseEnfant("nom",listQuestionsAnamnese1); // si cetait un adulte on passe son histoire de maladie en parametre
 
 
   Set<QuestionQcm> listQuestionsQcm = new HashSet<QuestionQcm>();

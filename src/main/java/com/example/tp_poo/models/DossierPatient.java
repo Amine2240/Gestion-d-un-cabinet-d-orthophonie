@@ -33,6 +33,9 @@ public class DossierPatient {
     public ArrayList<RendezVous> getListRdvous() {
         return listRdvous;
     }
+    public void setListRdvous(ArrayList<RendezVous> listRdvous) {
+        this.listRdvous = listRdvous;
+    }
     public ArrayList<Bo> getListBos() {
         return listBos;
     }

@@ -39,25 +39,58 @@
       </AnchorPane>
       <AnchorPane prefHeight="400.0" prefWidth="210.0" style="-fx-background-color: green;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="11.0" layoutY="96.0" style="-fx-text-fill: white;" text="Welcome Amine!" textFill="WHITE">
+            <Label layoutX="16.0" layoutY="100.0" prefHeight="22.0" prefWidth="178.0" style="-fx-text-fill: white;" text="Welcome Orthophoniste!" textFill="WHITE" wrapText="true">
                <font>
-                  <Font size="25.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Button layoutX="78.0" layoutY="345.0" mnemonicParsing="false" onAction="#switchToLoginScene" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Logout" AnchorPane.bottomAnchor="24.6">
+            <Button layoutX="70.0" layoutY="316.0" mnemonicParsing="false" onAction="#switchToLoginScene" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Logout" AnchorPane.bottomAnchor="53.60000000000002">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="19.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button layoutX="41.0" layoutY="208.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="127.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Ajouter Patient">
+            <Button layoutX="34.0" layoutY="192.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="127.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="liste des patients">
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font name="System Bold" size="19.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button layoutX="42.0" layoutY="169.0" mnemonicParsing="false" onAction="#switchToCalendar" prefHeight="30.0" prefWidth="127.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Aller Agenda">
+            <Button layoutX="22.0" layoutY="222.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Tests Et Anamnèses">
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font name="System Bold" size="19.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="33.0" layoutY="285.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="127.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="paramètres">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="33.0" layoutY="254.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="127.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="statistiques">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="33.0" layoutY="161.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="134.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Aller Agenda">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </AnchorPane>

@@ -55,7 +55,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="42.0" layoutY="169.0" mnemonicParsing="false" onAction="#switchToCalendar" prefHeight="30.0" prefWidth="127.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Aller Agenda">
+            <Button layoutX="42.0" layoutY="169.0" mnemonicParsing="false"  prefHeight="30.0" prefWidth="127.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Aller Agenda">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

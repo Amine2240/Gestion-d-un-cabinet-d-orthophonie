@@ -7,4 +7,10 @@ public class Trouble {
         this.nomTrouble = nomTrouble;
         this.troubleCategorie = troubleCategorie;
     }
+    public String getNomTrouble() {
+        return nomTrouble;
+    }
+    public TroubleCategries getTroubleCategorie() {
+        return troubleCategorie;
+    }
 }

@@ -55,9 +55,16 @@ ImageView supprimerButtonview;
     Patient addedPatient = null;
     List<Enfant> enfantspatients;
     List<Adulte> adultespatients;
-    PatientDataManager   dataManager = PatientDataManager.getInstance();;
+    AgendaManager agendaManager ;
+    PatientDataManager dataManager ;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        dataManager = PatientDataManager.getInstance();
+         agendaManager = AgendaManager.getInstance();
+
+         agendaManager.setPatientDataManager(dataManager);
+
+
         choixPatients.getItems().addAll(choix);
         choixPatients.setValue("Enfant"); // initial to avoid null
 
@@ -67,7 +74,6 @@ ImageView supprimerButtonview;
             filterTableView(newValue); // based on query
         });
 
-       dataManager.setDossierToPatients();
 
          enfantspatients =  dataManager.getPatientsComplet().stream()
                 .filter(patient -> patient instanceof Enfant)
@@ -81,6 +87,13 @@ ImageView supprimerButtonview;
 
         generateEnfantsTable();
         System.out.println("helllloowoowooow");
+        for (Enfant enfant : enfantspatients){
+            System.out.println("from list patients : "+ enfant.getNom());
+        }
+
+        dataManager.initializeData(agendaManager);
+        dataManager.setDossierToPatients();
+
     }
     private void filterTableView(String query) {
         // Filter enfantsTable
@@ -407,14 +420,14 @@ ImageView supprimerButtonview;
         stage.show();
     }
     private Stage stage;
-    public void switchToCalendar(ActionEvent event) throws IOException{
-        Mycalendar calendarView = new Mycalendar();
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene calendarScene = new Scene(calendarView.getRoot(), 1300, 1000);
-
-        stage.setScene(calendarScene);
-        stage.show();
-    }
+//    public void switchToCalendar(ActionEvent event) throws IOException{
+//        Mycalendar calendarView = new Mycalendar();
+//        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        Scene calendarScene = new Scene(calendarView.getRoot(), 1300, 1000);
+//
+//        stage.setScene(calendarScene);
+//        stage.show();
+//    }
     public void allerVersDossierPatient(DossierPatient dossierPatient) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("DossierPatientScene.fxml"));
         Parent root = loader.load();

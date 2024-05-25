@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -68,14 +69,14 @@ public class DossierPatientController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    public void switchToCalendar(ActionEvent event) throws IOException{
-        Mycalendar calendarView = new Mycalendar();
-       Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene calendarScene = new Scene(calendarView.getRoot(), 1300, 1000);
-
-        stage.setScene(calendarScene);
-        stage.show();
-    }
+//    public void switchToCalendar(ActionEvent event) throws IOException{
+//        Mycalendar calendarView = new Mycalendar();
+//       Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        Scene calendarScene = new Scene(calendarView.getRoot(), 1300, 1000);
+//
+//        stage.setScene(calendarScene);
+//        stage.show();
+//    }
     public void allerVersListsPatients(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PatientsScene.fxml")));
         Stage stage =(Stage)((Node)event.getSource()).getScene().getWindow();
@@ -110,6 +111,8 @@ public class DossierPatientController implements Initializable {
         generateRendezVousTable();
         listBos = dossierPatient.getListBos();
         generateBosTable();
+        listFichesSuivi = dossierPatient.getListFicheSuivis();
+        generateFichesSuivisTable();
     }
 
 
@@ -120,6 +123,10 @@ public class DossierPatientController implements Initializable {
     List<Bo> listBos  ;
     @FXML
     private TableView<Bo> BosTable = new TableView<>();
+
+    List<FicheSuivi> listFichesSuivi;
+    @FXML
+    private TableView<FicheSuivi> FicheSuiviTable = new TableView<>();
 
     public void generateRendezVousTable(){
 
@@ -235,6 +242,7 @@ public class DossierPatientController implements Initializable {
                     }
                 };
 
+
         TableColumn<Bo, String> anamneseButtonColumn = new TableColumn<>("Anamnese");
         anamneseButtonColumn.setCellFactory(new Callback<TableColumn<Bo, String>, TableCell<Bo, String>>() {
             @Override
@@ -247,15 +255,25 @@ public class DossierPatientController implements Initializable {
                             setGraphic(null);
                         } else {
                             HBox hbox = new HBox();
-                            Button button = new Button("voir anamnese");
+                            Button button = new Button(getTableView().getItems().get(getIndex()).getAnamnese() != null ? "voir anamnese" : "");
                             button.setCursor(javafx.scene.Cursor.HAND);
                             button.setOnAction(e -> {
                                 Bo bo = getTableView().getItems().get(getIndex());
                                 Dialog dialog = new Dialog();
                                 dialog.setTitle("Anamnese");
                                 dialog.setHeaderText(bo.getAnamnese().getNom());
-                                dialog.setContentText(bo.getAnamnese().toString());
-                                dialog.showAndWait();
+                                dialog.setResizable(true);
+                                dialog.getDialogPane().setPrefSize(480, 320);
+                                VBox dialogVbox = new VBox();
+                                for (QuestionAnamnese question : bo.getAnamnese().getListQuestions()) {
+                                    Label enonceLabel = new Label("question enonce : " + question.getQuestionEnonce());
+                                     Label categorieLabel = new Label("categorie : " + question.getQuestionCategorie().toString());
+                                    dialogVbox.getChildren().addAll(enonceLabel, categorieLabel);
+                                }
+                                dialog.getDialogPane().setContent(dialogVbox);
+                                dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+                                dialog.show();
+
                             });
                             hbox.getChildren().add(button);
                             setGraphic(hbox);
@@ -283,18 +301,27 @@ public class DossierPatientController implements Initializable {
                             button.setOnAction(e -> {
                                 Bo bo = getTableView().getItems().get(getIndex());
                                 Dialog dialog = new Dialog();
+                                VBox dialogVbox = new VBox();
+                                dialogVbox.setSpacing(10);
                                 dialog.setTitle("Epreuves cliniques");
                                 dialog.setHeaderText("Epreuves cliniques");
+                                dialog.setResizable(true);
+                                dialog.getDialogPane().setPrefSize(480, 320);
                                 for (EpreuveClinique epreuveClinique : bo.getListEpreuvesCliniques()) {
-                                    dialog.setContentText(" observation clinique : "+ epreuveClinique.getObservationClinique());
+                                    Label observationLabel = new Label("Observation clinique: " + epreuveClinique.getObservationClinique());
+                                    dialogVbox.getChildren().add(observationLabel);
+
                                     for (Test test : epreuveClinique.getListTests()) {
-                                        dialog.setContentText(test.getNom());
-                                        dialog.setContentText("score total : " + test.calculerScoreTotal());
+                                        Label testNameLabel = new Label("Test: " + test.getNom());
+                                        Label testScoreLabel = new Label("Score test: " + test.calculerScoreTotal());
 
-
+                                        dialogVbox.getChildren().addAll(testNameLabel, testScoreLabel);
                                     }
                                 }
-                                dialog.showAndWait();
+                                dialog.getDialogPane().setContent(dialogVbox);
+                 dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+                                dialog.show();
+
                             });
                             hbox.getChildren().add(button);
                             setGraphic(hbox);
@@ -324,8 +351,21 @@ public class DossierPatientController implements Initializable {
                                 Dialog dialog = new Dialog();
                                 dialog.setTitle("Diagnostic");
                                 dialog.setHeaderText("Diagnostic");
-                                dialog.setContentText(bo.getDiagnostic().getTroublesPatient().toString());
-                                dialog.showAndWait();
+                                dialog.setResizable(true);
+                             dialog.getDialogPane().setPrefSize(480, 320);
+                                //dialog.setContentText(bo.getDiagnostic().getTroublesPatient().toString());
+                                VBox dialogVbox = new VBox();
+                                for (Trouble trouble : bo.getDiagnostic().getTroublesPatient()) {
+                                    HBox hBox = new HBox();
+                                    Label troubleLabel = new Label("Trouble: " + trouble.getNomTrouble());
+                                    Label troubleCategorieLabel = new Label("Trouble categorie : " + trouble.getTroubleCategorie());
+                                    hBox.getChildren().addAll(troubleLabel, troubleCategorieLabel);
+                                    dialogVbox.getChildren().add(hBox);
+                                }
+                                dialog.getDialogPane().setContent(dialogVbox);
+                                dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+                                dialog.show();
+
                             });
                             hbox.getChildren().add(button);
                             setGraphic(hbox);
@@ -355,7 +395,12 @@ public class DossierPatientController implements Initializable {
                                 Dialog dialog = new Dialog();
                                 dialog.setTitle("Projet Therapeutique");
                                 dialog.setHeaderText(bo.getProjetTherapeutique().getTextDemarcheTherapeutique());
-                                dialog.showAndWait();
+                                dialog.setResizable(true);
+                                dialog.getDialogPane().setPrefSize(480, 320);
+                               // dialog.getDialogPane().setContent(bo.getProjetTherapeutique().getTextDemarcheTherapeutique());
+                                dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+                                dialog.show();
+
                             });
                             hbox.getChildren().add(button);
                             setGraphic(hbox);
@@ -367,6 +412,83 @@ public class DossierPatientController implements Initializable {
 
 
         BosTable.getColumns().addAll(anamneseButtonColumn, EpreuvesCliniquesButtonColumn , diagnosticButtonColumn ,projetTherapeutiqueButtonColumn);
+
+    }
+
+    public void generateFichesSuivisTable(){
+
+        //addRendezVouss(listRendezVous);
+        FicheSuiviTable.getItems().addAll(listFichesSuivi);
+
+        FicheSuiviTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        Callback<TableColumn<FicheSuivi, String>, TableCell<FicheSuivi, String>> cellFactory =
+                new Callback<>() {
+                    @Override
+                    public TableCell<FicheSuivi, String> call(TableColumn<FicheSuivi, String> column) {
+                        return new TableCell<>() {
+                            @Override
+                            protected void updateItem(String item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if (item == null || empty) {
+                                    setText(null);
+                                } else {
+                                    setText(item);
+                                }
+                            }
+                        };
+                    }
+                };
+
+        TableColumn<FicheSuivi, String> ficheSuiviButtonColumn = new TableColumn<>("fiche Suivis");
+        ficheSuiviButtonColumn.setCellFactory(new Callback<TableColumn<FicheSuivi, String>, TableCell<FicheSuivi, String>>() {
+            @Override
+            public TableCell<FicheSuivi, String> call(TableColumn<FicheSuivi, String> param) {
+                return new TableCell<>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            HBox hbox = new HBox();
+                            Button button = new Button("voir Fiche Suivi");
+                            button.setCursor(javafx.scene.Cursor.HAND);
+                            button.setOnAction(e -> {
+                                FicheSuivi fs = getTableView().getItems().get(getIndex());
+                                Dialog dialog = new Dialog();
+                                dialog.setTitle("Fiche suivi");
+                                dialog.setHeaderText("fiche suivi");
+                                dialog.setResizable(true);
+                                dialog.getDialogPane().setPrefSize(480, 320);
+                                VBox dialogVbox = new VBox();
+
+                                for (Objectif objectif : fs.getListObjectifs()) {
+                                    HBox hBox = new HBox();
+                                    Label objectifLabel = new Label("Objectif: " + objectif.getNomObjectif());
+                                    Label objectifCategorieLabel = new Label("Objectif categorie : " + objectif.getCategorieObjectif());
+                                    hBox.getChildren().addAll(objectifLabel, objectifCategorieLabel);
+                                    dialogVbox.getChildren().add(hBox);
+                                }
+                                Label noteObjectifsLabel = new Label("Note Objectifs: " + fs.getNoteObjectifs());
+                                dialogVbox.getChildren().add(noteObjectifsLabel);
+
+                                dialog.getDialogPane().setContent(dialogVbox);
+                                dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+                                dialog.show();
+
+                            });
+                            hbox.getChildren().add(button);
+                            setGraphic(hbox);
+                        }
+                    }
+                };
+            }
+        });
+
+
+
+        FicheSuiviTable.getColumns().addAll(ficheSuiviButtonColumn);
 
     }
 }

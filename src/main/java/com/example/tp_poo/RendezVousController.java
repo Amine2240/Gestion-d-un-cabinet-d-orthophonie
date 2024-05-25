@@ -204,8 +204,18 @@ public class RendezVousController implements Initializable {
     Objectif objectif3 = new Objectif(" nom Objectif 3", CategoriesObjectif.COURT_TERME);
     ArrayList<Objectif> listObjectifs1 = new ArrayList<>(List.of(objectif1, objectif2, objectif3));
     FicheSuivi ficheSuivi1 = new FicheSuivi(listObjectifs1);
-    PatientDataManager patientDataManager = PatientDataManager.getInstance();
+    PatientDataManager patientDataManager ;
+    AgendaManager agendaManager ;
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        agendaManager = AgendaManager.getInstance();
+        patientDataManager = PatientDataManager.getInstance();
+patientDataManager.initializeData(agendaManager);
+
+
+        // Set dependencies
+//        agendaManager.setPatientDataManager(patientDataManager);
+//        patientDataManager.setAgendaManager(agendaManager);
         choixRendezVous.getItems().addAll(choix);
         choixRendezVous.setValue("Consultation"); // initial to avoid null
         choixRendezVous.setOnAction(this::choixRendezVousAction);
@@ -235,25 +245,25 @@ public class RendezVousController implements Initializable {
              p4 = patientsComplet.get(3);
 
 //             dossierPatients = patientsSceneController.getDossierPatients();
-            dossierPatients = (ArrayList<DossierPatient>) patientDataManager.getDossierPatient();
+            dossierPatients = (ArrayList<DossierPatient>) patientDataManager.getDossiersPatients();
             patientDataManager.setDossierToPatients();
 
-            c1 = new Consultation(TypePatient.ADULTE , rendezVousdate1 , time1 , pp1);
-            c2 = new Consultation(TypePatient.ENFANT , rendezVousdate2 , time4  , pp2);
-            c3 = new Consultation(TypePatient.ADULTE , rendezVousdate3 , time2  , pp3);
-            c4 = new Consultation(TypePatient.ENFANT , rendezVousdate4 , time5  , pp4);
+            c1 = agendaManager.c1;
+            c2 = agendaManager.c2;
+            c3 = agendaManager.c3;
+            c4 = agendaManager.c4;
 
-             consultations = new ArrayList<>(List.of(c1, c2, c3, c4 )) ;
+             consultations = agendaManager.consultations ;
             //private Set<Consultation> consultationSet = new HashSet<>(consultations);
 
             // Create adulte objects with real data
-            s1 = new SeanceSuivi(rendezVousdate1 , time6  , Deroulement.ENPRESENTIEL , p1);
-            s2 = new SeanceSuivi(rendezVousdate2 , time7  , Deroulement.ENLIGNE, p2);
-            s3 = new SeanceSuivi(rendezVousdate3 , time8  , Deroulement.ENPRESENTIEL, p3);
-            s4 = new SeanceSuivi(rendezVousdate4 , time3  , Deroulement.ENLIGNE, p4);
-             seancesSuivis = new ArrayList<>(List.of(s1, s2, s3, s4)) ;
+            s1 = agendaManager.s1;
+            s2 = agendaManager.s2;
+            s3 = agendaManager.s3;
+            s4 = agendaManager.s4;
+             seancesSuivis = agendaManager.seancesSuivis ;
 
-             rendezVousList = new ArrayList<>(List.of(c1, c2, c3, c4 , s1 , s2 , s3 , s4 ));
+             rendezVousList = agendaManager.rendezVousList;
 
              agenda = new Agenda((ArrayList<RendezVous>) rendezVousList);
 
@@ -261,13 +271,13 @@ public class RendezVousController implements Initializable {
            // patientsSceneController.setDossierToPatients();
             //patientDataManager.setDossierPatient();
             // Now you can work with patientsIncomplet or any other data from PatientsSceneController
-
+            generateConsultationsTable();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
 
-        generateConsultationsTable();
+
     }
     public void generateConsultationsTable(){
         if (!seanceSuiviTable.getItems().isEmpty()) {
@@ -750,14 +760,14 @@ public class RendezVousController implements Initializable {
         stage.show();
     }
     private Stage stage;
-    public void switchToCalendar(ActionEvent event) throws IOException{
-        Mycalendar calendarView = new Mycalendar();
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene calendarScene = new Scene(calendarView.getRoot(), 1300, 1000);
-
-        stage.setScene(calendarScene);
-        stage.show();
-    }
+//    public void switchToCalendar(ActionEvent event) throws IOException{
+//        Mycalendar calendarView = new Mycalendar();
+//        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        Scene calendarScene = new Scene(calendarView.getRoot(), 1300, 1000);
+//
+//        stage.setScene(calendarScene);
+//        stage.show();
+//    }
     public void setHeureDebut(LocalTime heuredebut) { // to set the value of heuredebut in dialog controller (createConsultationContent and createSeanceSuiviContent methods    )
         this.heuredebut = heuredebut;
     }

@@ -46,7 +46,9 @@ public class DialogController {
 
         SeanceSuivi selectedSeanceSuivi = seanceSuiviTable.getSelectionModel().getSelectedItem();
         if (selectedSeanceSuivi == null) {
+            System.out.println("selected seance suivi is null");
             return vbox; // or handle the null case appropriately
+
 
         }
 
@@ -127,6 +129,8 @@ public class DialogController {
         Label label12 = new Label("Note Objectifs : ");
         TextField noteObjectifsField = new TextField();
         noteObjectifsField.setPromptText("Note Objectifs");
+        Label label14 = new Label("orthophoniste observation");
+        TextArea orthophonisteObservation = new TextArea();
         Label label13 = new Label("Objectifs Atteints : ");
         HBox hbox = new HBox();
         RadioButton optionoui = new RadioButton("Oui");
@@ -142,16 +146,42 @@ public class DialogController {
             if (optionoui.isSelected()) {
                 validerButton.setDisable(false);
                 validerButton.setOnAction(e -> {
-//                    ancienneficheSuivi.setNoteObjectifs(Double.parseDouble(noteObjectifsField.getText()));
-//                    ancienneficheSuivi.setObjectifsatteints(true);
-//                    System.out.println("fiche de suivi enregistrée");
+//
+                    System.out.println("information patient enregistrées");
+
+                    //patientDataManager.addPatient(selectedSeanceSuivi.getPatient()); // add it to patient
+                    ArrayList<Test> listTests = new ArrayList<>(List.of(testqcu1, testqcm1, testRpsLibres1, testExerices1));
+                    EpreuveClinique epreuveClinique = new EpreuveClinique("epreuve clinique observation 1 "  ,listTests);
+                    ArrayList<EpreuveClinique> listEpreuvesCliniques = new ArrayList<>(List.of(epreuveClinique));
+                    Trouble trouble1 = new Trouble("nom trouble", diagnostic.getValue());
+                    ArrayList<Trouble> troubles = new ArrayList<>(List.of(trouble1));
+                    Diagnostic diagnostic1 = new Diagnostic(troubles);
+                    ProjetTherapeutique projetTherapeutique1 = new ProjetTherapeutique(projetTherapeutique.getText());
+                    Bo bo1 = new Bo( selectedSeanceSuivi.getPatient(), listEpreuvesCliniques, diagnostic1, projetTherapeutique1);
+                    ArrayList<Bo> listBos = new ArrayList<>(List.of(bo1));
+                    AgendaManager agendaManager = AgendaManager.getInstance();
+//                    agendaManager.setPatientDataManager(patientDataManager);
+                    ArrayList<RendezVous> listRendezVous = new ArrayList<>();
+                    for (RendezVous rdv : agendaManager.agenda.getListRendezVous()) {
+                        if (rdv.getPatient().getNom().equals(selectedSeanceSuivi.getPatient().getNom()) && rdv.getPatient().getPrenom().equals(selectedSeanceSuivi.getPatient().getPrenom())){
+                            rdv.setObservation(orthophonisteObservation.getText());
+                            listRendezVous.addAll(Collections.singleton(rdv));
+                        }
+                    }
+                    ArrayList<FicheSuivi> listFicheSuivi = new ArrayList<>();
+//                    patientDataManager.getPatientsComplet().add(selectedSeanceSuivi.getPatient());
+//                    patientDataManager.setPatientsComplet(patientDataManager.getPatientsComplet());
+                    selectedSeanceSuivi.getPatient().getDossierPatient().getListFicheSuivis().add(ancienneficheSuivi);
+                    selectedSeanceSuivi.getPatient().getDossierPatient().getListBos().addAll(listBos);
+                    selectedSeanceSuivi.getPatient().getDossierPatient().getListRdvous().add(selectedSeanceSuivi);
+
                 });
             } else {
                 validerButton.setDisable(true);
             }
         });
 
-        vbox.getChildren().addAll(label1, label3, label4, testqcuNode, label5, testqcmNode, label6, testRpsLibresNode, label7, testExercicesNode, label8, diagnostic, label9, projetTherapeutique,label10,vboxFicheSuivi, validerButton);
+        vbox.getChildren().addAll(label1, label3, label4, testqcuNode, label5, testqcmNode, label6, testRpsLibresNode, label7, testExercicesNode, label8, diagnostic, label9, projetTherapeutique,label10,vboxFicheSuivi,label14 , orthophonisteObservation, validerButton);
         return vbox;
     }
 
@@ -272,6 +302,7 @@ public class DialogController {
                     Bo bo1 = new Bo( selectedConsultation.getPatient(),testAnamnese1, listEpreuvesCliniques, diagnostic1, projetTherapeutique1);
                     ArrayList<Bo> listBos = new ArrayList<>(List.of(bo1));
                     AgendaManager agendaManager = AgendaManager.getInstance();
+//                    agendaManager.setPatientDataManager(patientDataManager);
                     ArrayList<RendezVous> listRendezVous = new ArrayList<>();
                     for (RendezVous rdv : agendaManager.agenda.getListRendezVous()) {
                         if (rdv.getPatient().getNom().equals(selectedConsultation.getPatient().getNom()) && rdv.getPatient().getPrenom().equals(selectedConsultation.getPatient().getPrenom())){
@@ -279,10 +310,24 @@ public class DialogController {
                             listRendezVous.addAll(Collections.singleton(rdv));
                         }
                     }
-                    DossierPatient dossierPatient = new DossierPatient(selectedConsultation.getPatient(), listBos, listRendezVous, null);
-                    patientDataManager.addDossierPatient(dossierPatient);
+                    ArrayList<FicheSuivi> listFicheSuivi = new ArrayList<>();
+//                    patientDataManager.getPatientsComplet().add(selectedConsultation.getPatient());
+//                    patientDataManager.setPatientsComplet(patientDataManager.getPatientsComplet());
+                    for (Patient patient1 : patientDataManager.getPatientsComplet()) {
+
+                        System.out.println(" patient before creation dossier : " + patient1.getNom());
+
+                    }
+                    DossierPatient dossierPatient = new DossierPatient(selectedConsultation.getPatient(), listBos, listRendezVous, listFicheSuivi);
+                    patientDataManager.getDossiersPatients().add(dossierPatient);
+                    patientDataManager.setDossierPatient(patientDataManager.getDossiersPatients());
                     patientDataManager.getPatientsIncomplet().remove(selectedConsultation.getPatient());
                     patientDataManager.setPatientsIncomplet(patientDataManager.getPatientsIncomplet());
+
+
+                    for (DossierPatient dossier : patientDataManager.getDossiersPatients()){
+                        System.out.println(" dossier patien : " + dossier.getPatient().getNom());
+                    }
                     //consulationsTable.getItems().remove(selectedConsultation);
 
                     //ajouter au liste des dossiers

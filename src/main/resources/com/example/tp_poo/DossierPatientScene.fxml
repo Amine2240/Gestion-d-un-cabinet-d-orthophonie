@@ -27,7 +27,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="42.0" layoutY="169.0" mnemonicParsing="false" onAction="#switchToCalendar" prefHeight="30.0" prefWidth="127.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Aller Agenda">
+            <Button layoutX="42.0" layoutY="169.0" mnemonicParsing="false"  prefHeight="30.0" prefWidth="127.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Aller Agenda">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -68,7 +68,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <TableView layoutX="13.0" layoutY="416.0" prefHeight="90.0" prefWidth="594.0" />
+            <TableView fx:id="FicheSuiviTable" layoutX="13.0" layoutY="416.0" prefHeight="90.0" prefWidth="594.0" />
             <Button layoutX="13.0" layoutY="19.0" mnemonicParsing="false" onAction="#allerVersListsPatients" prefHeight="26.0" prefWidth="37.0" text="Retour">
                <font>
                   <Font size="8.0" />
