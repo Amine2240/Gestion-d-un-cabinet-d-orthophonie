@@ -6,12 +6,16 @@ import impl.com.calendarfx.view.NumericTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -209,8 +213,18 @@ public class TestsEtAnamnesesController implements Initializable {
 
 
 
+    @FXML
+    private AnchorPane sideBarancherPane;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SideBarScene.fxml"));
+        Parent sidebar = null;
+        try {
+            sidebar = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        sideBarancherPane.getChildren().add(sidebar);
         ObservableList<String> items = FXCollections.observableArrayList(
                 "Tests QCU", // ou bien Tests QCU
                 "Tests QCM",

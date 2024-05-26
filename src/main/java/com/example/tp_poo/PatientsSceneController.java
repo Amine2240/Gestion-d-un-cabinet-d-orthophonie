@@ -16,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -57,8 +58,19 @@ ImageView supprimerButtonview;
     List<Adulte> adultespatients;
     AgendaManager agendaManager ;
     PatientDataManager dataManager ;
+
+    @FXML
+    private AnchorPane sideBarancherPane;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SideBarScene.fxml"));
+        Parent sidebar = null;
+        try {
+            sidebar = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        sideBarancherPane.getChildren().add(sidebar);
         dataManager = PatientDataManager.getInstance();
          agendaManager = AgendaManager.getInstance();
 

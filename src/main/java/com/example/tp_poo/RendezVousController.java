@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -206,8 +207,17 @@ public class RendezVousController implements Initializable {
     FicheSuivi ficheSuivi1 = new FicheSuivi(listObjectifs1);
     PatientDataManager patientDataManager ;
     AgendaManager agendaManager ;
-
+    @FXML
+    private AnchorPane sideBarancherPane;
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SideBarScene.fxml"));
+        Parent sidebar = null;
+        try {
+            sidebar = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        sideBarancherPane.getChildren().add(sidebar);
         agendaManager = AgendaManager.getInstance();
         patientDataManager = PatientDataManager.getInstance();
 patientDataManager.initializeData(agendaManager);

@@ -7,19 +7,24 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp_poo.TestsEtAnamnesesController">
+<AnchorPane prefHeight="400.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp_poo.TestsEtAnamnesesController">
    <children>
-      <Label layoutX="48.0" layoutY="14.0" text="Tests">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <ListView fx:id="listView" layoutX="-1.0" layoutY="68.0" orientation="HORIZONTAL" prefHeight="46.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" />
-      <HBox fx:id="containerHbox" alignment="CENTER" layoutY="128.0" prefHeight="260.0" prefWidth="599.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="128.0">
+      <AnchorPane fx:id="sideBarancherPane" prefHeight="400.0" prefWidth="162.0" />
+      <AnchorPane layoutX="209.0" prefHeight="400.0" prefWidth="552.0">
          <children>
-            <VBox fx:id="selectedTestVBox" prefHeight="260.0" prefWidth="400.0" style="-fx-background-color: green;" HBox.hgrow="ALWAYS" />
-            <VBox fx:id="listTestsVBox" layoutX="10.0" layoutY="10.0" prefHeight="260.0" prefWidth="215.0" style="-fx-background-color: #00ef4c;" HBox.hgrow="ALWAYS" />
+            <Label text="Tests">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <ListView fx:id="listView" layoutY="74.0" orientation="HORIZONTAL" prefHeight="46.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.8000000000000114" />
+            <HBox fx:id="containerHbox" alignment="CENTER" prefHeight="260.0" prefWidth="599.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="128.0">
+               <children>
+                  <VBox fx:id="selectedTestVBox" prefHeight="260.0" prefWidth="400.0" style="-fx-border-color: white;" styleClass="gradientbackground" stylesheets="@styles.css" HBox.hgrow="ALWAYS" />
+                  <VBox fx:id="listTestsVBox" layoutX="10.0" layoutY="10.0" prefHeight="260.0" prefWidth="215.0" styleClass="gradientbackground" stylesheets="@styles.css" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
          </children>
-      </HBox>
+      </AnchorPane>
    </children>
 </AnchorPane>

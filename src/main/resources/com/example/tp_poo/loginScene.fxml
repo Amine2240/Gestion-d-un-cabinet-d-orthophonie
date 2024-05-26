@@ -5,67 +5,88 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp_poo.LoginController">
    <children>
-      <HBox alignment="CENTER" layoutX="6.0" prefHeight="400.0" prefWidth="587.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="6.399999999999977" AnchorPane.rightAnchor="6.7999999999999545" AnchorPane.topAnchor="0.0">
+      <HBox layoutX="-2.0" prefHeight="400.0" prefWidth="609.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane prefHeight="400.0" prefWidth="219.0" style="-fx-background-color: #00df0f;" HBox.hgrow="ALWAYS">
+            <Pane prefHeight="400.0" prefWidth="292.0" styleClass="gradientbackground" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
                <children>
-                  <Text layoutX="14.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="additional styling" textAlignment="CENTER" wrappingWidth="269.25567626953125">
+                  <Circle fill="DODGERBLUE" layoutX="155.0" layoutY="236.0" radius="103.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: none;" styleClass="circle1" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="80.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/Health%20Care.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="43.0" layoutY="26.0" prefHeight="98.0" prefWidth="224.0" text="Welcome To OrthoApp" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                      <font>
-                        <Font size="42.0" />
+                        <Font name="Arial Bold" size="25.0" />
                      </font>
-                  </Text>
+                  </Label>
                </children>
             </Pane>
-            <VBox alignment="CENTER" prefHeight="400.0" prefWidth="298.0" HBox.hgrow="ALWAYS">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Log in" textAlignment="CENTER" wrappingWidth="113.60002441406232">
-                     <font>
-                        <Font name="System Bold" size="29.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" top="20.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Label fx:id="errorLabel" textAlignment="CENTER" textFill="RED">
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" top="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="username" prefHeight="39.0" prefWidth="210.0" promptText="Enter Email">
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" top="20.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <PasswordField fx:id="password" prefHeight="39.0" prefWidth="210.0" promptText="Enter Password">
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" top="20.0" />
-                     </VBox.margin>
-                  </PasswordField>
-                  <HBox alignment="CENTER" prefHeight="46.0" prefWidth="293.0">
+                  <VBox alignment="CENTER" prefHeight="400.0" prefWidth="298.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="don't have an account ? " />
-                        <Button mnemonicParsing="false" onAction="#switchToSignupScene" prefHeight="26.0" prefWidth="66.0" text="Sign up" textFill="#00df0f" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Log in" textAlignment="CENTER" wrappingWidth="113.60002441406232">
+                           <font>
+                              <Font name="System Bold" size="29.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <ImageView fitHeight="98.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/Health%20Care.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="errorLabel" textAlignment="CENTER" textFill="RED">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="username" prefHeight="39.0" prefWidth="210.0" promptText="Enter Email" style="-fx-border-color: #008B74; -fx-background-color: white; -fx-border-radius: 5;">
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <PasswordField fx:id="password" prefHeight="39.0" prefWidth="210.0" promptText="Enter Password" style="-fx-border-color: #008B74; -fx-background-color: white; -fx-border-radius: 5;">
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" top="20.0" />
+                           </VBox.margin>
+                        </PasswordField>
+                        <Button mnemonicParsing="false" onAction="#allerVersHome" prefHeight="27.0" prefWidth="116.0" styleClass="gradientbackgroundbutton" stylesheets="@styles.css" text="Log In" textFill="#00df0f">
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <HBox alignment="CENTER" prefHeight="46.0" prefWidth="293.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="don't have an account ? " />
+                              <Button mnemonicParsing="false" onAction="#switchToSignupScene" prefHeight="25.0" prefWidth="66.0" styleClass="gradientbackgroundbutton" stylesheets="@styles.css" text="Sign up" textFill="#00df0f" />
+                           </children>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </HBox>
                      </children>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" top="20.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <Button mnemonicParsing="false" onAction="#allerVersHome" text="log In" textFill="#00df0f">
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" top="20.0" />
-                     </VBox.margin>
-                  </Button>
+                  </VBox>
                </children>
-            </VBox>
+            </AnchorPane>
          </children>
       </HBox>
    </children>

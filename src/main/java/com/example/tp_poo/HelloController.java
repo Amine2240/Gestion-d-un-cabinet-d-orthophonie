@@ -4,10 +4,13 @@ package com.example.tp_poo;
 import com.example.tp_poo.models.StatisticsData;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.image.WritableImage;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import javax.imageio.ImageIO;
@@ -26,7 +29,18 @@ public class HelloController {
     Button exportButton = new Button("exporter les graphes");
 
     @FXML
+    private AnchorPane sideBarancherPane;
+
+    @FXML
     public void initialize() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SideBarScene.fxml"));
+        Parent sidebar = null;
+        try {
+            sidebar = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        sideBarancherPane.getChildren().add(sidebar);
         // Create Pie Chart
         PieChart pieChart = new PieChart();
 

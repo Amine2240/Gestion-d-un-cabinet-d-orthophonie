@@ -1,0 +1,15 @@
+.gradientbackground {
+    -fx-background-color: linear-gradient(to bottom, #008F7A, #4D8076);
+
+}
+
+.gradientbackgroundbutton {
+    -fx-background-color: linear-gradient(to bottom right, #008F7A, #4D8076);
+    -fx-text-fill: white;
+    -fx-background-radius: 3;  /* Adjust the radius as needed */
+    -fx-border-radius: 3;
+}
+
+.circle1 {
+    -fx-fill: radial-gradient(radius 150%, white, transparent);
+}

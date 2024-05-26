@@ -1,40 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp_poo.HomeController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="gradientbackground" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp_poo.HomeController">
    <children>
-      <Button layoutX="81.0" layoutY="65.0" mnemonicParsing="false" onAction="#allerVersTestsEtAnamnese" prefHeight="129.0" prefWidth="137.0" style="-fx-background-color: green; -fx-text-fill: white;" text="Tests et Anamnèses" textAlignment="CENTER" wrapText="true">
+      <Button layoutX="81.0" layoutY="75.0" mnemonicParsing="false" onAction="#allerVersTestsEtAnamnese" prefHeight="129.0" prefWidth="137.0" style="-fx-border-color: white;" styleClass="gradientbackgroundbutton" stylesheets="@styles.css" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="381.0" layoutY="65.0" mnemonicParsing="false" onAction="#allerVersRendezVous" prefHeight="129.0" prefWidth="137.0" style="-fx-background-color: green; -fx-text-fill: white;" text="Rendez Vous" textAlignment="CENTER" wrapText="true">
+      <Button layoutX="381.0" layoutY="75.0" mnemonicParsing="false" onAction="#allerVersRendezVous" prefHeight="129.0" prefWidth="137.0" style="-fx-border-color: white;" styleClass="gradientbackgroundbutton" stylesheets="@styles.css" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="231.0" layoutY="75.0" mnemonicParsing="false" onAction="#allerVersPatients" prefHeight="129.0" prefWidth="137.0" style="-fx-border-color: white;" styleClass="gradientbackgroundbutton" stylesheets="@styles.css" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="231.0" layoutY="65.0" mnemonicParsing="false" onAction="#allerVersPatients" prefHeight="129.0" prefWidth="137.0" style="-fx-background-color: green; -fx-text-fill: white;" text="Patients" textAlignment="CENTER" wrapText="true">
+      <Button layoutX="381.0" layoutY="215.0" mnemonicParsing="false" onAction="#allerVersParametres" prefHeight="129.0" prefWidth="137.0" style="-fx-border-color: white;" styleClass="gradientbackgroundbutton" stylesheets="@styles.css" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="381.0" layoutY="205.0" mnemonicParsing="false" onAction="#allerVersParametres" prefHeight="129.0" prefWidth="137.0" style="-fx-background-color: green; -fx-text-fill: white;" text="Paramètres" textAlignment="CENTER" wrapText="true">
+      <Button layoutX="231.0" layoutY="215.0" mnemonicParsing="false" onAction="#allerVersStatistiques" prefHeight="129.0" prefWidth="137.0" style="-fx-border-color: white;" styleClass="gradientbackgroundbutton" stylesheets="@styles.css" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="231.0" layoutY="205.0" mnemonicParsing="false" onAction="#allerVersStatistiques" prefHeight="129.0" prefWidth="137.0" style="-fx-background-color: green; -fx-text-fill: white;" text="Statistiques" textAlignment="CENTER" wrapText="true">
+      <Button layoutX="81.0" layoutY="215.0" mnemonicParsing="false" onAction="#logout" prefHeight="129.0" prefWidth="137.0" style="-fx-border-color: white;" styleClass="gradientbackgroundbutton" stylesheets="@styles.css" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="81.0" layoutY="205.0" mnemonicParsing="false" onAction="#logout" prefHeight="129.0" prefWidth="137.0" style="-fx-background-color: green; -fx-text-fill: white;" text="Logout" textAlignment="CENTER" wrapText="true">
+      <ImageView fitHeight="44.0" fitWidth="55.0" layoutX="428.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: white;">
+         <image>
+            <Image url="@assets/icons8-calendrier-90.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="410.0" layoutY="169.0" text="Rendezvous" textFill="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font size="15.0" />
          </font>
-      </Button>
+      </Label>
+      <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="129.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" style="-fx-wrap-text: true;">
+         <image>
+            <Image url="@assets/icons8-sortie-90.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="278.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" style="-fx-wrap-text: true;">
+         <image>
+            <Image url="@assets/icons8-service-de-consultation-externe-90.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="44.0" fitWidth="54.0" layoutX="129.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" style="-fx-wrap-text: true;">
+         <image>
+            <Image url="@assets/icons8-tester-90.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="428.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" style="-fx-wrap-text: true;">
+         <image>
+            <Image url="@assets/icons8-paramètres-90.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="44.0" layoutX="284.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" style="-fx-wrap-text: true;">
+         <image>
+            <Image url="@assets/icons8-graphique-combiné-90.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="260.0" layoutY="311.0" text="Statistiques" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="126.0" layoutY="311.0" text="Logout" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="410.0" layoutY="311.0" text="Paramètres" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="260.0" layoutY="158.0" prefHeight="44.0" prefWidth="80.0" text="Liste des Patients" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="101.0" layoutY="158.0" prefHeight="44.0" prefWidth="99.0" text="Tests Et Anamnèses" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Circle fill="DODGERBLUE" layoutX="558.0" layoutY="362.0" radius="28.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: none;" styleClass="circle1" />
+      <ImageView fitHeight="56.0" fitWidth="56.0" layoutX="530.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/Health%20Care.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="218.0" layoutY="14.0" text="OrthoApp" textFill="WHITE">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
