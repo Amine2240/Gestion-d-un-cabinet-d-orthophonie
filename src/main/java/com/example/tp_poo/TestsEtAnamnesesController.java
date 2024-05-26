@@ -16,11 +16,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class TestsEtAnamnesesController implements Initializable {
+public class TestsEtAnamnesesController implements Initializable, Serializable {
     @FXML
    private ListView<String> listView;
    @FXML

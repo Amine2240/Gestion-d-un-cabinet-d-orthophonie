@@ -2,11 +2,12 @@ package com.example.tp_poo;
 
 import com.example.tp_poo.models.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PatientDataManager {
+public class PatientDataManager implements Serializable {
     private static PatientDataManager instance;
 private    AgendaManager agendaManager;
     private PatientDataManager() {
@@ -17,21 +18,13 @@ private    AgendaManager agendaManager;
     public static synchronized PatientDataManager getInstance() {
         if (instance == null) {
             instance = new PatientDataManager();
-            //AgendaManager.getInstance().setPatientDataManager(instance);
-//            instance.initializeData();
+
+            //instance = OrthophonisteManager.getOrthophoniste().getPatientDataManager();
         }
         return instance;
     }
-//    public AgendaManager getAgendaManager() {
-//        if (agendaManager == null) {
-//            agendaManager = AgendaManager.getInstance();
-//            instance.initializeData();
-//        }
-//        return agendaManager;
-//    }
-
-//    public void setAgendaManager(AgendaManager agendaManager) {
-////        this.agendaManager = agendaManager;
+//    public static void setInstance(PatientDataManager instance) {
+//        PatientDataManager.instance = instance;
 //    }
 
     LocalDate date1 = LocalDate.of(2000, 1, 1);
@@ -221,7 +214,9 @@ private    AgendaManager agendaManager;
     DossierPatient dossierPatienta3;
     DossierPatient dossierPatienta4;
 
+
     public void initializeData(AgendaManager agendaManager) {
+
         //setAgendaManager(AgendaManager.getInstance());
          dossierPatientp1 = new DossierPatient(p1, listBosp1, null, listFicheSuivisp1);
          dossierPatientp2 = new DossierPatient(p2, listBosp2, null, listFicheSuivisp2);
@@ -268,6 +263,7 @@ private    AgendaManager agendaManager;
     public List<Patient> getPatientsComplet() {
         if (patientsComplet == null) {
             patientsComplet = new ArrayList<>(List.of(p1, p2, p3, p4, a1, a2, a3, a4));
+           // patientsComplet = OrthophonisteManager.getOrthophoniste().getPatientDataManager().getPatientsComplet();
         }
         return patientsComplet;
     }

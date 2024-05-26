@@ -1,24 +1,60 @@
 package com.example.tp_poo.models;
 
+import com.example.tp_poo.AgendaManager;
+import com.example.tp_poo.PatientDataManager;
+import com.example.tp_poo.TestsEtAnamnesesController;
+
+import java.io.Serializable;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.util.*;
 
-public class Orthophoniste {
+public class Orthophoniste implements Serializable {
+ private static final long serialVersionUID = -6418699181382924031L;
  private String nom;
  private String prenom;
  private String email;
  private String mdp;
  private String adresse;
  private String numero_Tel;
+ private PatientDataManager patientDataManager;
+ private AgendaManager agendaManager;
+ private TestsEtAnamnesesController testsEtAnamnesesController;
 
- public Orthophoniste(String nom, String prenom, String email, String mdp, String adresse, String numero_Tel) {
-  this.nom = nom;
-  this.prenom = prenom;
-  this.email = email;
-  this.mdp = mdp;
-  this.adresse = adresse;
-  this.numero_Tel = numero_Tel;
+    public Orthophoniste(String nom, String prenom, String email, String mdp, String adresse, String numero_Tel, PatientDataManager patientDataManager, AgendaManager agendaManager, TestsEtAnamnesesController testsEtAnamnesesController) {
+    this.nom = nom;
+    this.prenom = prenom;
+    this.email = email;
+    this.mdp = mdp;
+    this.adresse = adresse;
+    this.numero_Tel = numero_Tel;
+    this.patientDataManager = patientDataManager;
+    this.agendaManager = agendaManager;
+    this.testsEtAnamnesesController = testsEtAnamnesesController;
+    }
+
+ public PatientDataManager getPatientDataManager() {
+  return patientDataManager;
+ }
+ public void setPatientDataManager(PatientDataManager patientDataManager) {
+  this.patientDataManager = patientDataManager;
+ }
+
+ public AgendaManager getAgendaManager() {
+  return agendaManager;
+ }
+    public void setAgendaManager(AgendaManager agendaManager) {
+    this.agendaManager = agendaManager;
+    }
+    public TestsEtAnamnesesController getTestsEtAnamnesesController() {
+     return testsEtAnamnesesController;
+    }
+
+ public void setTestsEtAnamnesesController(TestsEtAnamnesesController testsEtAnamnesesController) {
+  this.testsEtAnamnesesController = testsEtAnamnesesController;
+ }
+
+ public Orthophoniste() {
  }
 
  public void creerCompte() {

@@ -4,9 +4,9 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class StatisticsData {
-    private static final IntegerProperty A = new SimpleIntegerProperty(45);
-    private static final IntegerProperty B = new SimpleIntegerProperty(65);
-    private static final IntegerProperty C = new SimpleIntegerProperty(30);
+    private static final IntegerProperty A = new SimpleIntegerProperty(3);
+    private static final IntegerProperty B = new SimpleIntegerProperty(4);
+    private static final IntegerProperty C = new SimpleIntegerProperty(5);
 
     public static IntegerProperty aProperty() {
         return A;

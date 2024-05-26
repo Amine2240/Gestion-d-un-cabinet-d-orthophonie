@@ -20,6 +20,9 @@ public abstract class Question {
         }
 
     }
+    public double getScoreQuestion() {
+        return scoreQuestion;
+    }
     public String getQuestionEnonce() {
         return questionEnonce;
     }

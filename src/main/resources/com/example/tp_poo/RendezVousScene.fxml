@@ -14,7 +14,7 @@
    <children>
       <AnchorPane layoutX="221.0" prefHeight="410.0" prefWidth="624.0" AnchorPane.leftAnchor="221.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <AnchorPane prefHeight="47.0" prefWidth="834.0" style="-fx-background-color: green;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <AnchorPane prefHeight="47.0" prefWidth="834.0" styleClass="gradientbackground" stylesheets="@styles.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <TextField fx:id="searchField" layoutX="364.0" layoutY="10.0" prefHeight="26.0" prefWidth="245.0" promptText="Search RendezVous..." style="-fx-background-color: white;" AnchorPane.rightAnchor="14.399999999999977" />
                   <Label style="-fx-text-fill: white;" text="Liste des Rendez-Vous" textFill="#0bf42e">

@@ -9,10 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class DialogController {
 
@@ -273,6 +270,18 @@ public class DialogController {
             if (optionoui.isSelected()) {
                 validerButton.setDisable(false);
                 validerButton.setOnAction(e -> {
+//                    double correctCount ;
+//                    for (Map.Entry<QuestionQcu, String> entry : userSelections.entrySet()) {
+//                        if (entry.getKey().getReponseJuste().equals(entry.getValue())) {
+//
+//                            try {
+//                                entry.getKey().setScoreQuestion(10);
+//                            } catch (Exception1 ex) {
+//                                throw new RuntimeException(ex);
+//                            }
+//                        }
+//                    }
+
                     //selectedConsultation.setObservation(projetTherapeutique.getText());
                     selectedConsultation.getPatient().setAdresse(adresseField.getText());
                     selectedConsultation.getPatient().setLieuNaissance(lieuNaissanceField.getText());
@@ -358,10 +367,13 @@ public class DialogController {
         return testAnamneseNode;
     }
 
+    Map<QuestionQcu, String> userSelections;
     private VBox createTestQcuNode() {
         VBox testqcuNode = new VBox();
         Label testnomLabel = new Label(testqcu1.getNom());
         testqcuNode.getChildren().add(testnomLabel);
+        // Map to store user selections
+        userSelections = new HashMap<>();
         for (QuestionQcu question : testqcu1.getListQuestionsQcu()) {
             Label label = new Label(question.getQuestionEnonce());
             HBox propositionsHBox = new HBox();
@@ -370,6 +382,8 @@ public class DialogController {
             for (String proposition : question.getListpropositions()) {
                 RadioButton radioButton = new RadioButton(proposition);
                 radioButton.setToggleGroup(toggleGroup);
+                // Add listener to update the user selection map
+                radioButton.setOnAction(e -> userSelections.put(question, proposition));
                 propositionsHBox.getChildren().add(radioButton);
             }
             testqcuNode.getChildren().addAll(label, propositionsHBox);

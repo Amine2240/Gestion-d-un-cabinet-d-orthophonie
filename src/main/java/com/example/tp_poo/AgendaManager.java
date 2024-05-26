@@ -2,12 +2,13 @@ package com.example.tp_poo;
 
 import com.example.tp_poo.models.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AgendaManager {
+public class AgendaManager implements Serializable {
     private static AgendaManager instance;
     PatientDataManager patientDataManager;
     private AgendaManager( ) {
@@ -20,12 +21,18 @@ public class AgendaManager {
         if (instance == null) {
 
             instance = new AgendaManager();
+            //instance = OrthophonisteManager.getOrthophoniste().getAgendaManager();
         }
         return instance;
     }
+//    public static void setInstance(AgendaManager instance) {
+//        AgendaManager.instance = instance;
+//    }
+
     public PatientDataManager getPatientDataManager() {
         if (patientDataManager == null) {
-            patientDataManager = PatientDataManager.getInstance();
+           patientDataManager = PatientDataManager.getInstance();
+            //patientDataManager = OrthophonisteManager.getOrthophoniste().getPatientDataManager();
         }
         return patientDataManager;
     }

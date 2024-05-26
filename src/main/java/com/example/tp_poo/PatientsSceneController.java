@@ -59,6 +59,7 @@ ImageView supprimerButtonview;
     AgendaManager agendaManager ;
     PatientDataManager dataManager ;
 
+
     @FXML
     private AnchorPane sideBarancherPane;
     @Override
@@ -104,6 +105,7 @@ ImageView supprimerButtonview;
         }
 
         dataManager.initializeData(agendaManager);
+
         dataManager.setDossierToPatients();
 
     }

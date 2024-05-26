@@ -1,8 +1,9 @@
 package com.example.tp_poo.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Agenda {
+public class Agenda implements Serializable {
     private ArrayList<RendezVous> listRendezVous;
     public Agenda(ArrayList<RendezVous> listRendezVous){
         this.listRendezVous = listRendezVous;
